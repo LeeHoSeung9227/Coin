@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>관리자 페이지</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+    <style>
+        /* Global Styles */
+        html{
+            min-width:390px;
+        }
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #0D1117;
+            color: #FFFFFF;
+            display: flex;
+            flex-direction: column;
+        }
+        .menu-icon {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: white;
+        }
+
+        h1, p {
+            margin: 0;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        .container{
+            display: flex
+        }
+
+        /* Header Styles */
+        .header {
+            display: flex;
+            align-items: center;
+            padding: 20px 40px;
+            background-color: #161B22;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .header .logo-container-horizontal {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .header .logo-circle {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            overflow: hidden;
+        }
+
+        .header .logo-circle img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* 헤더 로고 */
+
+        .text-container {
+            display: flex;
+            justify-content: space-between; /* 두 세트를 좌우로 정렬 */
+            align-items: center; /* 텍스트 높이 일치 */
+            gap: 20px;
+        }
+
+        .coin-set, .project-set {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center; /* 세트 내 텍스트 정렬 */
+            text-align: center;
+        }
+
+        .coin-set h1 {
+            font-size: 35px;
+            font-weight: 700;
+            color: #007AFF;
+        }
+
+        .coin-set .sub-text {
+            font-size: 10px;
+            margin: 5px 0 0;
+            color: white;
+        }
+
+        .project-set p {
+            font-size: 15px;
+            margin: 5px 0;
+            color: white;
+        }
+        .divider {
+            width: 2px; /* 선 두께 */
+            height: 60px; /* 선 높이를 고정 */
+            background-color: #ffffff; /* 선 색상 */
+            opacity: 0.3; /* 약간의 투명도 */
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 200px;
+            height: 100vh;
+            background-color: #161B22;
+            padding: 40px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            box-shadow: 2px 0 4px rgba(0, 0, 0, 0.2);
+        }
+        .sidebar img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+            background-color: #f1e1f6;
+            transition: transform 0.3s, background-color 0.3s;
+            vertical-align: middle; /* 기본적으로 이미지를 텍스트의 중간에 맞추기 */
+            margin-bottom: 3px; 
+        }
+
+        .sidebar a {
+            width: 100%;
+            padding: 20px;
+            text-align: left;
+            border-radius: 8px;
+            color: #A1A1A1;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border-bottom: 1px solid #333;
+        }
+        .sidebar a:last-child {
+            border-bottom: none; /* 마지막 항목에는 실선 제거 */
+        }
+
+        .sidebar a:hover {
+            background-color: #007AFF;
+            color: #FFFFFF;
+        }
+
+        /* Main Content */
+        .main {
+            display: flex;
+            flex: 1;
+            padding: 40px;
+            gap: 20px;  
+        }
+
+        /* Video Section */
+        .video-section {
+            background-color: #161B22;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 70%;
+            height:680px;
+        }
+
+        .video-section video, .video-section img {
+            width: 70%;
+            height:600px;
+            border-radius: 8px;
+            display: none;
+            object-fit: cover;
+        }
+        .video-section video.active, .video-section img.active {
+            display: block;
+        }
+
+        .video-section h2 {
+            margin-top: 15px;
+            font-size: 1.5rem;
+            color: #FFFFFF;
+        }
+
+        .video-section p {
+            font-size: 1rem;
+            color: #A1A1A1;
+        }
+
+        /* Right Sidebar (Card Buttons) */
+        .button-section {
+            width: 250px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .button-card {
+            height: 100px;
+            background-color: #1E262E;
+            border-radius: 12px;
+            padding: 20px;
+            display: flex;
+
+            gap: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .button-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+        }
+
+        .button-card img {
+            width: 80px;
+            height: 80px;
+            object-fit: contain;
+        }
+
+        .button-card h3 {
+            font-size: 1rem;
+            color: #FFFFFF;
+            margin: 0;
+        }
+
+        .button-card p {
+            font-size: 0.9rem;
+            color: #A1A1A1;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 500px) {
+            /* Header Styles */
+            /* 헤더 수정 */
+            .header {
+            padding: 7px 14px; /* 기존 10px 20px에서 70% */
+            justify-content: flex-start;
+ 
+            }
+
+            .logo-circle {
+                width: 20px; /* 기존 50px의 70% */
+                height: 20px;
+            }
+
+            .header .logo-circle {
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                overflow: hidden;
+            }
+            .header .logo-container-horizontal {
+                justify-content: space-between;
+                gap: 15px;
+            }
+
+            .text-container h1 {
+                font-size: 1.26rem; /* 기존 1.8rem의 70% */
+            }
+
+            .text-container p {
+                font-size: 0.75em; /* 기존 1rem의 70% */
+            }
+            .coin-set .sub-text {
+                font-size: 6px;
+                margin: 5px 0 0;
+                color: white;
+            }
+
+            /* Hide default sidebar */
+            .sidebar {
+                position: fixed;
+                top: -100%;
+                left: 0; /* Hide off-screen */
+                width: 100%;
+                height: 100%;
+                background-color: #161B22;
+                color: white;
+                padding: 0;
+                box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+                transition: all 0.3s ease;
+                z-index: 1000;
+                overflow: hidden; /* 화면에 넘치는 부분 숨기기 */
+                border-bottom: 1px solid white;
+            }
+            
+            .sidebar.active {
+                top: 70px; /* Slide into view */
+                padding:20px;
+            }
+            
+
+            .menu-icon {
+                display: block; /* Show menu icon on small screens */
+                position: absolute; /* 추가 */
+                right: 20px; /* 추가 */
+            }
+
+            .header {
+                justify-content: space-between;
+            }
+
+            .main {
+                margin-left: 0; /* Ensure content doesn't move with sidebar */
+                flex-direction: column;
+                
+            }
+            .video-section {
+                background-color: #161B22;
+                border-radius: 12px;
+                padding: 20px;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+                width: 90%;
+                height:400px;
+            }
+            .video-section video{
+                width: 100%;
+                height:350px;
+                border-radius: 8px;
+                object-fit: cover;
+            }
+            .video-section img {
+                width:300px;
+                height:350px;
+            }
+
+            .video-section h2 {
+                margin-top: 15px;
+                font-size: 1.0rem;
+                color: #FFFFFF;
+            }
+
+            .video-section p {
+                font-size: 0.8rem;
+                color: #A1A1A1;
+            }
+            /* Right Sidebar (Card Buttons) */
+            .button-section {
+                width: 100%;
+                height:10%;
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .button-card {
+                height: 80px;
+                background-color: #1E262E;
+                border-radius: 12px;
+                padding: 20px;
+                display: flex;
+
+                gap: 15px;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+                cursor: pointer;
+                transition: transform 0.3s ease, box-shadow 0.3s ease;
+            }
+
+            .button-card:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+            }
+
+            .button-card img {
+                width: 60px;
+                height: 60px;
+                object-fit: contain;
+            }
+
+            .button-card h3 {
+                font-size: 1rem;
+                color: #FFFFFF;
+                margin: 0;
+            }
+
+            .button-card p {
+                font-size: 0.9rem;
+                color: #A1A1A1;
+            }
+            
+            }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="logo-container-horizontal">
+            <div class="logo-circle">
+                <img src="images/About us.png" alt="Logo" class="logo-image">
+            </div>
+            <div class="text-container">
+                <div class="coin-set">
+                    <h1>COIN</h1>
+                    <p class="sub-text">coastal innovation</p>
+                </div>
+                <div class="divider"></div>
+                <div class="project-set">
+                    <p>해양융합공학과</p>
+                    <p>캡스톤프로젝트</p>
+                </div>
+            </div>
+            <span class="menu-icon" onclick="toggleSidebar()">☰</span> <!--깃 수정사항-->
+        </div>
+    </header>
+
+    <!-- Sidebar -->
+     <div class = "container">
+        <nav id="sidebar" class="sidebar">
+            <a href="환경운동가.html"><img src="images/환경 보호 활동가-김환경.png">  환경운동가</a>
+            <a href="어촌주민.html"><img src="images/어촌주민-박어부.png"> 어촌주민</a>
+            <a href="관리자.html"><img src="images/해수욕장 관리자-최금지.png"> 관리자</a>
+            <a href="안전요원.html"><img src="images/해수욕장 안전요원-계조심.png"> 안전요원</a>
+            <a href="이용객.html"><img src="images/해수욕장 이용객-강바다.png"> 이용객</a>
+            <a href="스포츠애호가.html"><img src="images/해양스포츠 애호가-장서핑.png"> 스포츠애호가</a>
+        </nav>
+
+
+    <!-- Main Content -->
+    <div class="main">
+        <!-- Video Section -->
+ 
+        <div class="video-section">
+            <img id="main-image" src="images/해수욕장 관리자-최금지.png" alt="Default Image" class="active">
+            <video id="stream-video" controls autoplay class="stream-player"></video>
+            <div class="error-message" style="display: none; color: red; text-align: center; margin-top: 10px;">
+                영상이 준비중입니다.
+            </div>
+            <div class="info">
+                <h2>최금지</h2>
+                <p>#CCTV #드론 #분석</p>
+            </div>
+        </div>
+
+
+        <!-- Button Section -->
+
+            <div class="button-section">
+                <div class="button-card" onclick="startStreaming()">
+                    <img src="images/cctv.png" alt="CCTV Icon">
+                    <div>
+                        <h3>CCTV 영상</h3>
+                        <p>실시간 CCTV 영상입니다.</p>
+                    </div>
+                </div>
+                <div class="button-card">
+                    <img src="images/드론.png" alt="Drone Icon">
+                    <div>
+                        <h3>드론 영상</h3>
+                        <p>드론 촬영 영상입니다.</p>
+                    </div>
+                </div>
+                <div class="button-card">
+                    <img src="images/분석.png" alt="Analysis Icon">
+                    <div>
+                        <h3>분석 결과</h3>
+                        <p>분석 결과 영상입니다.</p>
+                    </div>
+                </div>
+            </div>
+
+    </div>
+
+    <script>
+        let hls = null;
+
+        function playLiveStream() {
+            const videoElement = document.querySelector(".video-section video");
+            const imageElement = document.querySelector(".video-section img");
+            const errorMessage = document.querySelector(".error-message"); // 에러 메시지 요소
+
+            // 이미지 숨기고 비디오 활성화
+            imageElement.classList.remove("active");
+            videoElement.classList.add("active");
+            errorMessage.style.display = "none"; // 에러 메시지 숨기기
+
+            // HLS 스트림 로드
+            if (Hls.isSupported()) {
+                if (hls) {
+                    hls.destroy();
+                }
+                hls = new Hls();
+                hls.loadSource("http://172.27.103.229:8080/hls/fucking.m3u8"); // HLS 스트림 URL
+                hls.attachMedia(videoElement);
+                hls.on(Hls.Events.MANIFEST_PARSED, function () {
+                    videoElement.play().catch(function (error) {
+                        console.log("Play failed:", error);
+                        showError(); // 에러 메시지 표시
+                    });
+                });
+
+                // 에러 핸들링
+                hls.on(Hls.Events.ERROR, function (event, data) {
+                    if (data.fatal) {
+                        console.log("Fatal error occurred:", data);
+                        showError(); // 에러 메시지 표시
+                        switch (data.type) {
+                            case Hls.ErrorTypes.NETWORK_ERROR:
+                                console.log("네트워크 에러 발생, 재시도...");
+                                hls.startLoad();
+                                break;
+                            case Hls.ErrorTypes.MEDIA_ERROR:
+                                console.log("미디어 에러 발생, 복구 시도...");
+                                hls.recoverMediaError();
+                                break;
+                            default:
+                                hls.destroy();
+                                break;
+                        }
+                    }
+                });
+            } else if (videoElement.canPlayType("application/vnd.apple.mpegurl")) {
+                // Safari와 같은 네이티브 HLS 지원 브라우저
+                videoElement.src = "http://172.27.103.229:8080/hls/fucking.m3u8";
+                videoElement.addEventListener("loadedmetadata", function () {
+                    videoElement.play().catch(function (error) {
+                        console.log("Play failed:", error);
+                        showError(); // 에러 메시지 표시
+                    });
+                });
+            } else {
+                showError(); // 브라우저에서 HLS 지원되지 않을 때 에러 메시지 표시
+            }
+        }
+
+        function showError() {
+            const errorMessage = document.querySelector(".error-message");
+            errorMessage.style.display = "block"; // 에러 메시지 표시
+        }
+
+        // CCTV 버튼 클릭 이벤트 추가
+        document.querySelector(".button-card").addEventListener("click", playLiveStream);
+
+        function toggleSidebar() {
+        const sidebar = document.getElementById('sidebar'); // 'sidebar' 아이디를 참조
+        sidebar.classList.toggle('active');
+    }
+        
+  
+
+    </script>
+</body>
+</html>
