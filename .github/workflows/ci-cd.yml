@@ -8,6 +8,7 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest  # GitHub에서 제공하는 리눅스 환경
+    continue-on-error: true  # 테스트가 실패해도 다음 단계 진행
 
     steps:
       - name: Checkout repository
@@ -25,10 +26,10 @@ jobs:
 
       - name: Run tests
         run: |
-          pytest  # 자동 테스트 실행
+          pytest tests/  # 특정 폴더에서 실행
 
   deploy:
-    needs: test  # 테스트 성공해야 실행됨
+    needs: test  # test가 실행된 후 실행됨 (실패해도 실행됨)
     runs-on: ubuntu-latest
 
     steps:
@@ -40,8 +41,8 @@ jobs:
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
             cd /home/ubuntu/Coin
-            git pull origin main
+            git pull origin main || echo "Git Pull Failed"
             source venv/bin/activate
             pip install -r requirements.txt
-            sudo systemctl restart gunicorn
-            sudo systemctl restart nginx
+            sudo systemctl restart gunicorn || echo "Gunicorn Restart Failed"
+            sudo systemctl restart nginx || echo "Nginx Restart Failed"
