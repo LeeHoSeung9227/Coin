@@ -55,25 +55,21 @@
         .container {
             max-width: 1280px;
             margin: 0 auto;
-            padding: 0 2rem;
+            padding: 0 1rem; /* 모바일에서 여백 줄임 */
         }
 
+        /* 섹션 타이틀 개선 */
         .section-title {
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
+            font-size: clamp(1.8rem, 5vw, 2.5rem); /* 반응형 폰트 크기 */
+            margin-bottom: 1rem;
             text-align: center;
-            background: var(--gradient);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
+            line-height: 1.2;
         }
-
+        
         .section-subtitle {
-            text-align: center;
-            max-width: 700px;
-            margin: 0 auto 3rem;
-            color: var(--text-muted);
-            font-size: 1.1rem;
+            font-size: clamp(0.95rem, 2.5vw, 1.1rem);
+            margin-bottom: 2rem;
+            padding: 0 1rem;
         }
 
         /* Header Styles */
@@ -242,7 +238,7 @@
         }
 
         .hero-title {
-            font-size: 4.5rem;
+            font-size: clamp(2rem, 8vw, 4rem); /* 화면 크기에 따라 자동 조절 */
             font-weight: 700;
             margin-bottom: 1rem;
             background: linear-gradient(to right, var(--primary), var(--accent));
@@ -284,7 +280,9 @@
             transition: var(--transition);
             border: none;
             cursor: pointer;
-        }
+            min-height: 48px; /* 터치 권장 크기 */
+            
+            }
 
         .btn-primary {
             background: var(--gradient);
@@ -530,7 +528,7 @@
 
         .about-image {
             flex: 1;
-            max-width: 400px;
+            max-width: 30%;
             border-radius: 50%;
             overflow: hidden;
             box-shadow: var(--card-shadow);
@@ -699,110 +697,254 @@
             }
         }
 
-        /* Mobile styles */
+        /* 모바일 반응형 디자인 개선 */
         @media (max-width: 768px) {
-            /* Header */
+            /* 컨테이너 */
+            .container {
+                padding: 0 1rem;
+            }
+            
+            /* 헤더 개선 */
             .header {
-                padding: 1rem;
+                padding: 0.8rem 1rem;
             }
-
+            
+            .logo-container {
+                gap: 0.5rem;
+            }
+            
+            .logo-circle {
+                width: 35px;
+                height: 35px;
+            }
+            
             .brand-name {
-                font-size: 1.5rem;
+                font-size: 1.3rem;
             }
-
+            
+            .brand-tagline {
+                font-size: 0.5rem;
+            }
+            
+            /* 네비게이션 메뉴 개선 */
             .nav-menu {
                 position: fixed;
                 top: 0;
                 right: -100%;
-                width: 70%;
+                width: 80%; /* 더 넓게 */
                 height: 100vh;
-                background: var(--card-bg);
+                background: rgba(22, 27, 34, 0.98);
+                backdrop-filter: blur(20px);
                 flex-direction: column;
                 gap: 0;
-                padding: 5rem 2rem 2rem;
-                transition: var(--transition);
+                padding: 6rem 2rem 2rem;
+                transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
                 z-index: 999;
+                box-shadow: -10px 0 30px rgba(0, 0, 0, 0.5);
             }
-
+            
             .nav-menu.active {
                 right: 0;
-                box-shadow: -5px 0 20px rgba(0, 0, 0, 0.2);
             }
-
+            
             .nav-link {
                 display: block;
-                padding: 1rem 0;
+                padding: 1.2rem 0;
+                font-size: 1.1rem;
                 border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+                text-align: center;
             }
-
+            
             .mobile-menu-btn {
-                display: block;
-                z-index: 1000;
+                font-size: 1.8rem;
+                padding: 0.5rem;
             }
-
-            /* Hero */
+            
+            /* 히어로 섹션 개선 */
+            .hero-content {
+                padding: 0 1.5rem;
+            }
+            
             .hero-title {
-                font-size: 3rem;
+                font-size: clamp(2rem, 8vw, 3rem);
+                margin-bottom: 0.8rem;
             }
-
+            
             .hero-subtitle {
-                font-size: 1.2rem;
+                font-size: clamp(1rem, 4vw, 1.2rem);
+                margin-bottom: 1.5rem;
             }
-
+            
+            .hero-description {
+                font-size: 1rem;
+                margin-bottom: 2rem;
+                padding: 0 0.5rem;
+            }
+            
             .cta-buttons {
                 flex-direction: column;
                 gap: 1rem;
+                align-items: center;
             }
-
-            /* Feature */
+            
+            .btn {
+                width: 100%;
+                max-width: 280px;
+                padding: 1rem 2rem;
+                font-size: 1rem;
+            }
+            
+            /* 서비스 그리드 개선 */
+            .services-grid {
+                grid-template-columns: 1fr; /* 모바일에서 1열로 */
+                gap: 1.5rem;
+                margin-top: 2rem;
+            }
+            
+            .service-card {
+                margin: 0 auto;
+                max-width: 300px; /* 최대 너비 제한 */
+                max-height : 300px;
+            }
+            
+            .service-image {
+                height: 120px; /* 모바일에서 이미지 높이 줄임 */
+            }
+            
+            .service-content {
+                padding: 1.2rem;
+            }
+            
+            .service-name span {
+                font-size: 1.1rem;
+            }
+            
+            .service-description {
+                font-size: 0.95rem;
+                line-height: 1.5;
+            }
+            
+            /* 피처 섹션 개선 */
+            .features-wrapper {
+                gap: 3rem;
+            }
+            
             .feature-item {
                 flex-direction: column;
                 gap: 2rem;
+                text-align: center;
             }
-
+            
             .feature-item:nth-child(even) {
                 flex-direction: column;
             }
-
-            /* About */
+            
+            .feature-image {
+                max-width: 100%;
+                order: 1;
+            }
+            
+            .feature-content {
+                order: 2;
+            }
+            
+            .feature-title {
+                font-size: 1.5rem;
+                margin-bottom: 1rem;
+            }
+            
+            .feature-description {
+                font-size: 0.95rem;
+                margin-bottom: 1.2rem;
+            }
+            
+            .feature-list-item {
+                justify-content: flex-start;
+                text-align: left;
+                font-size: 0.9rem;
+            }
+            
+            /* About 섹션 개선 */
             .about-content {
                 flex-direction: column;
                 gap: 2rem;
+                text-align: center;
             }
-
+            
+            .about-image {
+                max-width: 250px;
+                margin: 0 auto;
+            }
+            
+            .about-title {
+                font-size: 2rem;
+                margin-bottom: 1rem;
+            }
+            
+            .about-description {
+                font-size: 0.95rem;
+                text-align: left;
+                margin-bottom: 1.5rem;
+            }
+            
             .stats {
-                flex-direction: column;
+                flex-direction: row;
+                justify-content: space-around;
                 gap: 1rem;
+                margin-top: 1.5rem;
             }
-
-            /* Footer */
+            
+            .stat-item {
+                text-align: center;
+            }
+            
+            .stat-number {
+                font-size: 2rem;
+            }
+            
+            .stat-label {
+                font-size: 0.8rem;
+            }
+            
+            /* 푸터 개선 */
+            .footer {
+                padding: 3rem 0 1.5rem;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                margin-bottom: 2rem;
+            }
+            
+            .footer-column {
+                text-align: center;
+            }
+            
+            .footer-logo {
+                justify-content: center;
+                margin-bottom: 1rem;
+            }
+            
+            .footer-links {
+                align-items: center;
+            }
+            
+            .footer-contact {
+                align-items: center;
+            }
+            
             .footer-bottom {
                 flex-direction: column;
                 gap: 1rem;
                 text-align: center;
             }
-        }
-
-        @media (max-width: 480px) {
-            /* General */
-            .section-title {
-                font-size: 2rem;
-            }
-
-            /* Header */
-            .project-info {
-                display: none;
-            }
-
-            .divider {
-                display: none;
-            }
-
-            /* Hero */
-            .hero-title {
-                font-size: 2.5rem;
+            
+            .copyright {
+                font-size: 0.85rem;
             }
         }
+        
     </style>
 </head>
 <body>
@@ -829,10 +971,10 @@
         </div>
         
         <nav class="nav-menu">
-            <a href="#services" class="nav-link">서비스</a>
-            <a href="#features" class="nav-link">기능</a>
-            <a href="#about" class="nav-link">프로젝트 소개</a>
-            <a href="#contact" class="nav-link">연락처</a>
+            <a href="#overview" class="nav-link">프로젝트 개요</a>
+            <a href="#rip-current" class="nav-link">이안류 탐지</a>
+            <a href="#user-services" class="nav-link">맞춤 서비스</a>
+            <a href="#contact" class="nav-link">팀 소개</a>
         </nav>
         
         <button class="mobile-menu-btn">☰</button>
@@ -847,12 +989,12 @@
         </video>
         
         <div class="hero-content">
-            <h1 class="hero-title">COIN</h1>
-            <p class="hero-subtitle">해양 정보 전달 서비스</p>
-            <p class="hero-description">연안 안전을 위한 혁신적인 정보 플랫폼</p>
+            <h1 class="hero-title">해양 위험, 실시간으로 보다</h1>
+            <p class="hero-subtitle">COIN과 함께하는 스마트 해양 안전 서비스</p>
+            <p class="hero-description">AI 기반 이안류 탐지와 드론 정찰을 통한 실시간 해양 안전 모니터링</p>
             <div class="cta-buttons">
-                <a href="#services" class="btn btn-primary">서비스 살펴보기</a>
-                <a href="#about" class="btn btn-outline">프로젝트 소개</a>
+                <a href="#rip-current" class="btn btn-primary">이안류 탐지 보기</a>
+                <a href="#user-services" class="btn btn-outline">맞춤 서비스 체험</a>
             </div>
         </div>
         
@@ -863,88 +1005,86 @@
         </div>
     </section>
 
-    <!-- Services Section -->
-    <section class="services" id="services">
+    <!-- Overview Section -->
+    <section class="services" id="overview">
         <div class="container">
-            <h2 class="section-title">사용자별 맞춤 서비스</h2>
-            <p class="section-subtitle">다양한 해양 관련 이해관계자들을 위한 특화된 정보와 서비스를 제공합니다</p>
+            <h2 class="section-title">프로젝트 개요요</h2>
+            <p class="section-subtitle">해양 안전 문제 해결을 위한 COIN 프로젝트의 비전과 목표</p>
             
             <div class="services-grid">
-                <a href="{{ url_for('admin') }}" class="service-card">
-                    <img src="{{ url_for('static', filename='images/About us.png') }}" alt="환경" class="service-image">
+                <div class="service-card">
+                    <img src="{{ url_for('static', filename='images/이안류.png') }}" alt="해양 안전 문제" class="service-image">
                     <div class="service-content">
-                        <span class="service-type">환경보호활동가</span>
+                        <span class="service-type">Problem</span>
                         <div class="service-name">
-                            <span>프로젝트 소개</span>
+                            <span>이안류란</span>
                         </div>
-                        <p class="service-description">COIN 프로젝트의 목적과 비전에 대해 알아보세요.</p>
+                        <p class="service-description">매년 증가하는 해양 사고와 이안류로 인한 인명피해는 심각한 사회적 문제입니다. 전통적인 안전 관리 방식으로는 실시간 위험 상황에 대한 대응이 한계가 있습니다.</p>
                     </div>
-                </a>
+                </div>
+
+                <div class="service-card">
+                    <img src="{{ url_for('static', filename='images/해양안전.png') }}" alt="해양 안전 문제" class="service-image">
+                    <div class="service-content">
+                        <span class="service-type">Problem</span>
+                        <div class="service-name">
+                            <span>해양 안전 문제</span>
+                        </div>
+                        <p class="service-description">매년 증가하는 해양 사고와 이안류로 인한 인명피해는 심각한 사회적 문제입니다. 전통적인 안전 관리 방식으로는 실시간 위험 상황에 대한 대응이 한계가 있습니다.</p>
+                    </div>
+                </div>
                 
-                <a href="{{ url_for('lifeguard') }}" class="service-card">
-                    <img src="{{ url_for('static', filename='images/About us.png') }}" alt="안전요원" class="service-image">
+                <div class="service-card">
+                    <img src="{{ url_for('static', filename='images/영상화면.png') }}" alt="COIN 프로젝트 목표" class="service-image">
                     <div class="service-content">
-                        <span class="service-type">Lifeguard</span>
+                        <span class="service-type">Solution</span>
                         <div class="service-name">
-                            <span>계조심</span>
+                            <span>COIN 프로젝트 목표</span>
                         </div>
-                        <p class="service-description">안전수칙 및 해변 재난관련 내용을 알아보세요.</p>
+                        <p class="service-description">CCTV 영상 분석과 드론 정찰을 통한 실시간 이안류 탐지 시스템 구축으로 해양 안전 사고를 예방하고, 사용자 맞춤형 안전 정보를 제공합니다.</p>
                     </div>
-                </a>
+                </div>
 
-                <a href="{{ url_for('user.user') }}" class="service-card">
-                    <img src="{{ url_for('static', filename='images/About us.png') }}" alt="프로젝트 소개" class="service-image">
+                <div class="service-card">
+                    <img src="{{ url_for('static', filename='images/가상환경.png') }}" alt="프로젝트 필요성" class="service-image">
                     <div class="service-content">
-                        <span class="service-type">About Us</span>
+                        <span class="service-type">Innovation</span>
                         <div class="service-name">
-                            <span>프로젝트 소개</span>
+                            <span>프로젝트 필요성</span>
                         </div>
-                        <p class="service-description">COIN 프로젝트의 목적과 비전에 대해 알아보세요.</p>
+                        <p class="service-description">AI 기반 실시간 분석과 디지털 트윈 기술을 활용하여 해수욕객, 관리자, 연구자 모두에게 필요한 정보를 적시에 제공하는 통합 솔루션이 필요합니다.</p>
                     </div>
-                </a>
-
-                <a href="안전요원.html" class="service-card">
-                    <img src="{{ url_for('static', filename='images/About us.png') }}" alt="프로젝트 소개" class="service-image">
-                    <div class="service-content">
-                        <span class="service-type">About Us</span>
-                        <div class="service-name">
-                            <span>프로젝트 소개</span>
-                        </div>
-                        <p class="service-description">COIN 프로젝트의 목적과 비전에 대해 알아보세요.</p>
-                    </div>
-                </a>
-
-               
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Features Section -->
-    <section class="features" id="features">
+    <!-- Rip Current Detection Section -->
+    <section class="features" id="rip-current">
         <div class="container">
-            <h2 class="section-title">주요 기능</h2>
-            <p class="section-subtitle">COIN이 제공하는 다양한 해양 정보 서비스를 살펴보세요</p>
+            <h2 class="section-title">이안류 탐지 시스템</h2>
+            <p class="section-subtitle">실시간 CCTV 영상 분석을 통한 AI 기반 이안류 탐지 기술</p>
             
             <div class="features-wrapper">
                 <div class="feature-item">
                     <div class="feature-image">
-                        <img src="images/환경 보호 활동가-김환경.png" alt="해양 생태계 모니터링">
+                        <img src="images/환경 보호 활동가-김환경.png" alt="CCTV 영상 분석">
                     </div>
                     <div class="feature-content">
-                        <h3 class="feature-title">이안류 탐지 방법법</h3>
-                        <p class="feature-description">수심역산 알고리즘(Cbathy)을 통해 에너지 플럭스를 계산하여 이안류 위험지역을 판단합니다다.</p>
+                        <h3 class="feature-title">CCTV 영상 분석</h3>
+                        <p class="feature-description">실시간 CCTV 영상을 AI 알고리즘으로 분석하여 이안류 발생 패턴을 감지합니다. 컴퓨터 비전 기술을 활용해 파도의 움직임과 흐름을 실시간으로 모니터링합니다.</p>
                         <ul class="feature-list">
                             <li class="feature-list-item">
                                 <span class="feature-icon">✓</span>
-                                <span>CCTV 영상 사영보정정</span>
+                                <span>실시간 영상 처리 및 분석</span>
                             </li>
                             <li class="feature-list-item">
                                 <span class="feature-icon">✓</span>
-                                <span>파랑 정보 분석석</span>
+                                <span>AI 기반 패턴 인식</span>
                             </li>
                             <li class="feature-list-item">
                                 <span class="feature-icon">✓</span>
-                                <span>격자별 에너지 플럭스 계산</span>
+                                <span>자동 위험 상황 감지</span>
                             </li>
                         </ul>
                     </div>
@@ -952,23 +1092,23 @@
                 
                 <div class="feature-item">
                     <div class="feature-image">
-                        <img src="images/어촌주민-박어부.png" alt="어촌 커뮤니티 활동">
+                        <img src="images/어촌주민-박어부.png" alt="파랑 정보 계산">
                     </div>
                     <div class="feature-content">
-                        <h3 class="feature-title">드론을 활용한 정찰 프로토콜</h3>
-                        <p class="feature-description">이안류 또는 높은 에너지로 인명사고가 발생 가능성이 높은곳을 드론 경로 알고리즘을 통해 정찰합니다.</p>
+                        <h3 class="feature-title">파랑 정보 계산</h3>
+                        <p class="feature-description">해양 기상 데이터와 현장 센서 정보를 종합하여 파고, 파향, 파주기 등의 파랑 정보를 실시간으로 계산하고 분석합니다.</p>
                         <ul class="feature-list">
                             <li class="feature-list-item">
                                 <span class="feature-icon">✓</span>
-                                <span>드론 정찰 경로를 위한 군집화 </span>
+                                <span>실시간 파고 측정</span>
                             </li>
                             <li class="feature-list-item">
                                 <span class="feature-icon">✓</span>
-                                <span>에너지 플럭스가 높은 구간 가중치 부여여</span>
+                                <span>파향 및 파주기 분석</span>
                             </li>
                             <li class="feature-list-item">
                                 <span class="feature-icon">✓</span>
-                                <span>최단거리 알고리즘을 통한 경로 생성</span>
+                                <span>해양 기상 데이터 통합</span>
                             </li>
                         </ul>
                     </div>
@@ -976,25 +1116,204 @@
                 
                 <div class="feature-item">
                     <div class="feature-image">
-                        <img src="images/해수욕장 관리자-최금지.png" alt="해안 안전 관리">
+                        <img src="images/해수욕장 관리자-최금지.png" alt="E_flux 산출법">
                     </div>
                     <div class="feature-content">
-                        <h3 class="feature-title">디지털 트윈을 통한 드론 정찰</h3>
-                        <p class="feature-description">해변 위험 정찰 뿐 아니라 해변 이용객들의 안전을 위한 온라인 스트리밍 진행.</p>
+                        <h3 class="feature-title">E_flux 산출법</h3>
+                        <p class="feature-description">E_flux = ∫(ρ × g × H² × C_g × cos(θ)) dt<br>에너지 플럭스 계산을 통해 이안류의 강도와 방향을 정량적으로 측정하여 위험도를 평가합니다.</p>
                         <ul class="feature-list">
                             <li class="feature-list-item">
                                 <span class="feature-icon">✓</span>
-                                <span>언리얼 엔진을 통해 가상환경 제작작</span>
+                                <span>에너지 플럭스 실시간 계산</span>
                             </li>
                             <li class="feature-list-item">
                                 <span class="feature-icon">✓</span>
-                                <span>ROS를 이용하여 실제 환경과 가상환경을 매칭칭</span>
+                                <span>위험도 정량적 평가</span>
                             </li>
                             <li class="feature-list-item">
                                 <span class="feature-icon">✓</span>
-                                <span>이러한 모든 과정을 해변 이용객들이 볼 수 있도록 온라인 스트리밍을 진행함</span>
+                                <span>이안류 강도 및 방향 측정</span>
                             </li>
                         </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Patrol Protocol Section -->
+    <section class="services" id="patrol-protocol">
+        <div class="container">
+            <h2 class="section-title">정찰 프로토콜</h2>
+            <p class="section-subtitle">드론을 활용한 스마트 해양 정찰 시스템</p>
+            
+            <div class="services-grid">
+                <div class="service-card">
+                    <img src="{{ url_for('static', filename='images/About us.png') }}" alt="알고리즘 흐름도" class="service-image">
+                    <div class="service-content">
+                        <span class="service-type">Algorithm</span>
+                        <div class="service-name">
+                            <span>알고리즘 흐름도</span>
+                        </div>
+                        <p class="service-description">1. 위험 지역 식별 → 2. 최적 경로 계산 → 3. 드론 자동 배치 → 4. 실시간 모니터링 → 5. 위험 상황 알림</p>
+                    </div>
+                </div>
+                
+                <div class="service-card">
+                    <img src="{{ url_for('static', filename='images/About us.png') }}" alt="정찰 경로 예시" class="service-image">
+                    <div class="service-content">
+                        <span class="service-type">Route</span>
+                        <div class="service-name">
+                            <span>정찰 경로 예시</span>
+                        </div>
+                        <p class="service-description">해수욕장 전체를 커버하는 효율적인 지그재그 패턴으로 드론이 자동 순찰하며, 위험 지역 발견 시 해당 구역을 집중 모니터링합니다.</p>
+                    </div>
+                </div>
+
+                <div class="service-card">
+                    <img src="{{ url_for('static', filename='images/About us.png') }}" alt="최단거리 계산" class="service-image">
+                    <div class="service-content">
+                        <span class="service-type">Optimization</span>
+                        <div class="service-name">
+                            <span>최단거리 계산</span>
+                        </div>
+                        <p class="service-description">다익스트라 알고리즘과 A* 경로 찾기를 활용하여 여러 관심 지점을 가장 효율적으로 순찰할 수 있는 최적 경로를 실시간으로 계산합니다.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Digital Twin Section -->
+    <section class="features" id="digital-twin">
+        <div class="container">
+            <h2 class="section-title">디지털 트윈 시스템</h2>
+            <p class="section-subtitle">가상환경과 실제 환경을 연동한 실시간 모니터링</p>
+            
+            <div class="features-wrapper">
+                <div class="feature-item">
+                    <div class="feature-image">
+                        <img src="images/환경 보호 활동가-김환경.png" alt="ROS2 시스템">
+                    </div>
+                    <div class="feature-content">
+                        <h3 class="feature-title">ROS2 시스템</h3>
+                        <p class="feature-description">Robot Operating System 2를 기반으로 드론과 센서 데이터를 실시간으로 수집하고 처리하여 가상환경과 동기화합니다.</p>
+                        <ul class="feature-list">
+                            <li class="feature-list-item">
+                                <span class="feature-icon">✓</span>
+                                <span>실시간 데이터 수집 및 처리</span>
+                            </li>
+                            <li class="feature-list-item">
+                                <span class="feature-icon">✓</span>
+                                <span>드론-센서 통합 관리</span>
+                            </li>
+                            <li class="feature-list-item">
+                                <span class="feature-icon">✓</span>
+                                <span>가상환경 동기화</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="feature-item">
+                    <div class="feature-image">
+                        <img src="images/어촌주민-박어부.png" alt="Unreal Engine">
+                    </div>
+                    <div class="feature-content">
+                        <h3 class="feature-title">Unreal Engine</h3>
+                        <p class="feature-description">고품질 3D 가상환경을 구축하여 실제 해수욕장을 디지털로 재현하고, 실시간 데이터를 반영한 시뮬레이션을 제공합니다.</p>
+                        <ul class="feature-list">
+                            <li class="feature-list-item">
+                                <span class="feature-icon">✓</span>
+                                <span>고품질 3D 가상환경 구축</span>
+                            </li>
+                            <li class="feature-list-item">
+                                <span class="feature-icon">✓</span>
+                                <span>실제 환경 디지털 재현</span>
+                            </li>
+                            <li class="feature-list-item">
+                                <span class="feature-icon">✓</span>
+                                <span>실시간 시뮬레이션</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="feature-item">
+                    <div class="feature-image">
+                        <img src="images/해수욕장 관리자-최금지.png" alt="실시간 관측">
+                    </div>
+                    <div class="feature-content">
+                        <h3 class="feature-title">실시간 관측</h3>
+                        <p class="feature-description">사용자는 웹 브라우저를 통해 실시간으로 해수욕장 상황을 3D 가상환경에서 확인하고, 위험 지역과 안전 정보를 직관적으로 파악할 수 있습니다.</p>
+                        <ul class="feature-list">
+                            <li class="feature-list-item">
+                                <span class="feature-icon">✓</span>
+                                <span>웹 기반 실시간 모니터링</span>
+                            </li>
+                            <li class="feature-list-item">
+                                <span class="feature-icon">✓</span>
+                                <span>직관적 3D 인터페이스</span>
+                            </li>
+                            <li class="feature-list-item">
+                                <span class="feature-icon">✓</span>
+                                <span>위험 지역 시각화</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- User Services Section -->
+    <section class="services" id="user-services">
+        <div class="container">
+            <h2 class="section-title">사용자 맞춤 서비스</h2>
+            <p class="section-subtitle">다양한 사용자 그룹을 위한 특화된 해양 안전 정보 서비스</p>
+            
+            <div class="services-grid">
+                <a href="{{ url_for('user.user') }}" class="service-card">
+                    <img src="{{ url_for('static', filename='images/About us.png') }}" alt="해수욕객 서비스" class="service-image">
+                    <div class="service-content">
+                        <span class="service-type">Beachgoers</span>
+                        <div class="service-name">
+                            <span>해수욕객 서비스</span>
+                        </div>
+                        <p class="service-description">실시간 위험 경고, 위치 기반 안전 정보, 혼잡도 정보, 모바일 알림을 통한 안전한 해수욕 환경을 제공합니다.</p>
+                    </div>
+                </a>
+                
+                <a href="{{ url_for('lifeguard') }}" class="service-card">
+                    <img src="{{ url_for('static', filename='images/About us.png') }}" alt="관리자/안전요원 서비스" class="service-image">
+                    <div class="service-content">
+                        <span class="service-type">Management</span>
+                        <div class="service-name">
+                            <span>관리자/안전요원 서비스</span>
+                        </div>
+                        <p class="service-description">CCTV 실시간 영상, 드론 경로 설정, 위험 상황 대시보드, 긴급 대응 시스템을 통한 통합 관리 솔루션을 제공합니다.</p>
+                    </div>
+                </a>
+
+                <a href="{{ url_for('admin') }}" class="service-card">
+                    <img src="{{ url_for('static', filename='images/About us.png') }}" alt="정부/연구자 서비스" class="service-image">
+                    <div class="service-content">
+                        <span class="service-type">Research</span>
+                        <div class="service-name">
+                            <span>정부/연구자 서비스</span>
+                        </div>
+                        <p class="service-description">위험 지수 데이터, E_flux 분석 리포트, 통계 데이터 다운로드, 연구용 API를 통한 데이터 분석 플랫폼을 제공합니다.</p>
+                    </div>
+                </a>
+
+                <div class="service-card">
+                    <img src="{{ url_for('static', filename='images/About us.png') }}" alt="해양 스포츠 활동가 서비스" class="service-image">
+                    <div class="service-content">
+                        <span class="service-type">Sports</span>
+                        <div class="service-name">
+                            <span>해양 스포츠 활동가 서비스</span>
+                        </div>
+                        <p class="service-description">파고/수온 정보, 바람 방향 데이터, 활동 적정 시간대, 해수욕장별 조건 비교를 통한 전문 정보를 제공합니다.</p>
                     </div>
                 </div>
             </div>
@@ -1039,7 +1358,7 @@
         </div>
     </section>
 
-    <!-- Footer -->
+    <!-- Team & Contact Section -->
     <footer class="footer" id="contact">
         <div class="container">
             <div class="footer-content">
@@ -1054,47 +1373,44 @@
                         </div>
                     </div>
                     <p class="footer-about">
-                        해양 정보 혁신을 통해 지속 가능한 미래를 만들어 갑니다.
+                        해양 안전을 위한 혁신적인 기술로 더 안전한 바다를 만들어 갑니다.
                     </p>
                 </div>
                 
                 <div class="footer-column">
-                    <h3 class="footer-title">프로필</h3>
+                    <h3 class="footer-title">팀 구성</h3>
                     <div class="footer-links">
-                        <a href="#" class="footer-link">환경 보호 활동가</a>
-                        <a href="#" class="footer-link">어촌 주민</a>
-                        <a href="#" class="footer-link">해수욕장 관리자</a>
-                        <a href="#" class="footer-link">안전요원</a>
-                        <a href="#" class="footer-link">해수욕장 이용객</a>
-                        <a href="#" class="footer-link">해양스포츠 애호가</a>
+                        <div class="footer-link">지도교수: 신성원 교수님</div>
+                        <div class="footer-link">전공 분야: 연안해양공학</div>
+                        <div class="footer-link">프로젝트 리더: 이호승</div>
+                        <div class="footer-link">담당 업무: 총괄 관리</div>
                     </div>
                 </div>
                 
                 <div class="footer-column">
-                    <h3 class="footer-title">서비스</h3>
+                    <h3 class="footer-title">팀원</h3>
                     <div class="footer-links">
-                        <a href="#" class="footer-link">해양 생태계 모니터링</a>
-                        <a href="#" class="footer-link">어촌 커뮤니티 활동</a>
-                        <a href="#" class="footer-link">해안 안전 관리</a>
-                        <a href="#" class="footer-link">해양 레저 정보</a>
-                        <a href="#" class="footer-link">해변 이용 가이드</a>
+                        <div class="footer-link">김민수 - AI 개발</div>
+                        <div class="footer-link">박지영 - 드론 시스템</div>
+                        <div class="footer-link">최준호 - 웹 개발</div>
+                        <div class="footer-link">정수빈 - 데이터 분석</div>
                     </div>
                 </div>
                 
                 <div class="footer-column">
-                    <h3 class="footer-title">연락처</h3>
+                    <h3 class="footer-title">문의사항</h3>
                     <div class="footer-contact">
                         <p class="contact-item">
                             <span>📧</span>
-                            <span>dlghtmd@hanyang.ac.kr</span>
+                            <span>coin.project@university.ac.kr</span>
                         </p>
                         <p class="contact-item">
                             <span>📱</span>
-                            <span>+82 10-8226-9227</span>
+                            <span>02-1234-5678</span>
                         </p>
                         <p class="contact-item">
                             <span>📍</span>
-                            <span>연안해양공학 연구실</span>
+                            <span>서울특별시 종로구 대학로 123</span>
                         </p>
                     </div>
                 </div>
@@ -1103,14 +1419,13 @@
             <div class="footer-divider"></div>
             
             <div class="footer-bottom">
-                <p class="copyright">© 2024 Coin Capstone - All Rights Reserved.</p>
+                <p class="copyright">© 2024 COIN Capstone Project - All Rights Reserved.</p>
                 <div class="footer-social">
                     <a href="https://sungwshin6.wixsite.com/coel/member" class="social-link">
                         <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="https://sungwshin6.wixsite.com/coel/member"/>
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
                         </svg>
                     </a>
-                    
                 </div>
             </div>
         </div>
@@ -1147,7 +1462,7 @@
         
         // Scroll Indicator Click
         document.querySelector('.scroll-indicator').addEventListener('click', () => {
-            const servicesSection = document.querySelector('#services');
+            const servicesSection = document.querySelector('#overview');
             window.scrollTo({
                 top: servicesSection.offsetTop - 70,
                 behavior: 'smooth'
@@ -1162,6 +1477,29 @@
             } else {
                 header.classList.remove('scrolled');
             }
+            // 터치 디바이스 감지 및 최적화
+            if ('ontouchstart' in window) {
+                document.body.classList.add('touch-device');
+            }
+
+            // 스크롤 성능 최적화
+            let ticking = false;
+            function updateScrollEffects() {
+                const header = document.querySelector('.header');
+                if (window.scrollY > 50) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+                ticking = false;
+            }
+
+            window.addEventListener('scroll', () => {
+                if (!ticking) {
+                    requestAnimationFrame(updateScrollEffects);
+                    ticking = true;
+                }
+            });
         });
     </script>
 </body>
