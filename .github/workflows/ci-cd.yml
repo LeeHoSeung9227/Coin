@@ -23,6 +23,12 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
+          
+      - name: Start Gunicorn server
+        run: |
+          gunicorn your_app_module:app --bind 0.0.0.0:80 &
+          sleep 5
+
 
       - name: Run tests
         run: |
