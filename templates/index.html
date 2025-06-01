@@ -1026,6 +1026,8 @@
         <nav class="nav-menu">
             <a href="#overview" class="nav-link">프로젝트 개요</a>
             <a href="#rip-current" class="nav-link">이안류 탐지</a>
+            <a href="#patrol-protocol" class="nav-link">정찰 프로토콜</a>
+            <a href="#digital-twin" class="nav-link">디지털 트윈</a>
             <a href="#user-services" class="nav-link">맞춤 서비스</a>
             <a href="#contact" class="nav-link">팀 소개</a>
         </nav>
@@ -1115,11 +1117,35 @@
         <div class="container">
             <h2 class="section-title">이안류 탐지 시스템</h2>
             <p class="section-subtitle">실시간 CCTV 영상 분석을 통한 AI 기반 이안류 탐지 기술</p>
+            <div class="features-wrapper">
+                <div class="feature-item">
+                    <div class="feature-image">
+                        <img src="{{ url_for('static', filename='images/이안류 원인.png') }}" alt="CCTV 영상 분석">
+                    </div>
+                    <div class="feature-content">
+                        <h3 class="feature-title">이안류 발생 원인 및 요약</h3>
+                        <p class="feature-description">이안류는 곧 쇄파되지 않은 높은 에너지를 해소하기 위해 발생하기 때문에 이를 위해, 카메라 이미지상 픽셀별 에너지 준위인 𝐸_𝑓𝑙𝑢𝑥를 계산하여, 높은 𝐸_𝑓𝑙𝑢𝑥를 중심으로 드론 정찰 계획을 세운다.</p>
+                        <ul class="feature-list">
+                            <li class="feature-list-item">
+                                <span class="feature-icon">✓</span>
+                                <span>수심파악을 하여 해저 지형에 따른 불균형 확인인</span>
+                            </li>
+                            <li class="feature-list-item">
+                                <span class="feature-icon">✓</span>
+                                <span>수심역산을 통해 𝐸_𝑓𝑙𝑢𝑥 계산</span>
+                            </li>
+                            <li class="feature-list-item">
+                                <span class="feature-icon">✓</span>
+                                <span>𝐸_𝑓𝑙𝑢𝑥 위험도 기반으로 드론정찰</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
             
             <div class="features-wrapper">
                 <div class="feature-item">
                     <div class="feature-image">
-                        <img src="images/환경 보호 활동가-김환경.png" alt="CCTV 영상 분석">
+                        <img src="{{ url_for('static', filename='images/영상화면.png') }}" alt="CCTV 영상 분석">
                     </div>
                     <div class="feature-content">
                         <h3 class="feature-title">CCTV 영상 분석</h3>
@@ -1143,7 +1169,7 @@
                 
                 <div class="feature-item">
                     <div class="feature-image">
-                        <img src="images/어촌주민-박어부.png" alt="파랑 정보 계산">
+                        <img src="{{ url_for('static', filename='images/파랑정보.png') }}" alt="파랑 정보 계산">
                     </div>
                     <div class="feature-content">
                         <h3 class="feature-title">파랑 정보 계산</h3>
@@ -1167,15 +1193,15 @@
                 
                 <div class="feature-item">
                     <div class="feature-image">
-                        <img src="images/해수욕장 관리자-최금지.png" alt="E_flux 산출법">
+                        <img src="{{ url_for('static', filename='images/에너지플럭스계산.png') }}" alt="E_flux 산출법">
                     </div>
                     <div class="feature-content">
-                        <h3 class="feature-title">E_flux 산출법</h3>
-                        <p class="feature-description">E_flux = ∫(ρ × g × H² × C_g × cos(θ)) dt<br>에너지 플럭스 계산을 통해 이안류의 강도와 방향을 정량적으로 측정하여 위험도를 평가합니다.</p>
+                        <h3 class="feature-title">𝐸_𝑓𝑙𝑢𝑥 산출법</h3>
+                        <p class="feature-description">𝐸_𝑓𝑙𝑢𝑥 = 1/8x (ρ × g × H² × C_g × cos(θ)) dt<br>에너지 플럭스 계산을 통해 이안류의 강도와 방향을 정량적으로 측정하여 위험도를 평가합니다.</p>
                         <ul class="feature-list">
                             <li class="feature-list-item">
                                 <span class="feature-icon">✓</span>
-                                <span>에너지 플럭스 실시간 계산</span>
+                                <span>수심역산을 통한 𝐸_𝑓𝑙𝑢𝑥 실시간 계산</span>
                             </li>
                             <li class="feature-list-item">
                                 <span class="feature-icon">✓</span>
@@ -1183,7 +1209,7 @@
                             </li>
                             <li class="feature-list-item">
                                 <span class="feature-icon">✓</span>
-                                <span>이안류 강도 및 방향 측정</span>
+                                <span>𝐸_𝑓𝑙𝑢𝑥 집중 구역 파악</span>
                             </li>
                         </ul>
                     </div>
@@ -1192,50 +1218,81 @@
         </div>
     </section>
 
-    <!-- Patrol Protocol Section -->
-    <section class="services" id="patrol-protocol">
+    <section class="features" id="patrol-protocol">
         <div class="container">
-            <h2 class="section-title">정찰 프로토콜</h2>
-            <p class="section-subtitle">드론을 활용한 스마트 해양 정찰 시스템</p>
-            
-            <div class="services-grid">
-                <div class="service-card">
-                    <img src="{{ url_for('static', filename='images/About us.png') }}" alt="알고리즘 흐름도" class="service-image" />
-                    <div class="service-content">
-                      <span class="service-type">Algorithm</span>
-                      <div class="service-name">
-                        <span>알고리즘 흐름도</span>
-                      </div>
-                      <p class="service-description">
-                        1. 위험 지역 식별 → 2. 최적 경로 계산 → 3. 드론 자동 배치 → 4. 실시간 모니터링 → 5. 위험 상황 알림
-                      </p>
+            <h2 class="section-title">드론 정찰 프로토콜</h2>
+            <p class="section-subtitle">드론을 활용한 해양 정찰 시스템템</p>
+            <div class="features-wrapper">
+                <div class="feature-item">
+                    <div class="feature-image">
+                        <img src="{{ url_for('static', filename='images/드론알고리즘.png') }}" alt="CCTV 영상 분석">
                     </div>
-                  </div>
-                  
-                  <!-- 모달 구조 (body 가장 아래에 한 번만) -->
-                  <div class="modal-overlay" style="display:none;">
-                    <div class="modal-content"></div>
-                  </div>
-                
-                <div class="service-card">
-                    <img src="{{ url_for('static', filename='images/About us.png') }}" alt="정찰 경로 예시" class="service-image">
-                    <div class="service-content">
-                        <span class="service-type">Route</span>
-                        <div class="service-name">
-                            <span>정찰 경로 예시</span>
-                        </div>
-                        <p class="service-description">해수욕장 전체를 커버하는 효율적인 지그재그 패턴으로 드론이 자동 순찰하며, 위험 지역 발견 시 해당 구역을 집중 모니터링합니다.</p>
+                    <div class="feature-content">
+                        <h3 class="feature-title">알고리즘 요약도</h3>
+                        <p class="feature-description">이안류는 곧 쇄파되지 않은 높은 에너지를 해소하기 위해 발생하기 때문에 이를 위해, 카메라 이미지상 픽셀별 에너지 준위인 𝐸_𝑓𝑙𝑢𝑥를 계산하여, 높은 𝐸_𝑓𝑙𝑢𝑥를 중심으로 드론 정찰 계획을 세운다.</p>
+                        <ul class="feature-list">
+                            <li class="feature-list-item">
+                                <span class="feature-icon">✓</span>
+                                <span>수심파악을 하여 해저 지형에 따른 불균형 확인인</span>
+                            </li>
+                            <li class="feature-list-item">
+                                <span class="feature-icon">✓</span>
+                                <span>수심역산을 통해 𝐸_𝑓𝑙𝑢𝑥 계산</span>
+                            </li>
+                            <li class="feature-list-item">
+                                <span class="feature-icon">✓</span>
+                                <span>𝐸_𝑓𝑙𝑢𝑥 위험도 기반으로 드론정찰</span>
+                            </li>
+                        </ul>
                     </div>
                 </div>
-
-                <div class="service-card">
-                    <img src="{{ url_for('static', filename='images/About us.png') }}" alt="최단거리 계산" class="service-image">
-                    <div class="service-content">
-                        <span class="service-type">Optimization</span>
-                        <div class="service-name">
-                            <span>최단거리 계산</span>
-                        </div>
-                        <p class="service-description">다익스트라 알고리즘과 A* 경로 찾기를 활용하여 여러 관심 지점을 가장 효율적으로 순찰할 수 있는 최적 경로를 실시간으로 계산합니다.</p>
+            
+            <div class="features-wrapper">
+                <div class="feature-item">
+                    <div class="feature-image">
+                        <img src="{{ url_for('static', filename='images/군집화.png') }}" alt="CCTV 영상 분석">
+                    </div>
+                    <div class="feature-content">
+                        <h3 class="feature-title">CCTV 영상 분석</h3>
+                        <p class="feature-description">실시간 CCTV 영상을 AI 알고리즘으로 분석하여 이안류 발생 패턴을 감지합니다. 컴퓨터 비전 기술을 활용해 파도의 움직임과 흐름을 실시간으로 모니터링합니다.</p>
+                        <ul class="feature-list">
+                            <li class="feature-list-item">
+                                <span class="feature-icon">✓</span>
+                                <span>실시간 영상 처리 및 분석</span>
+                            </li>
+                            <li class="feature-list-item">
+                                <span class="feature-icon">✓</span>
+                                <span>AI 기반 패턴 인식</span>
+                            </li>
+                            <li class="feature-list-item">
+                                <span class="feature-icon">✓</span>
+                                <span>자동 위험 상황 감지</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="feature-item">
+                    <div class="feature-image">
+                        <img src="{{ url_for('static', filename='images/드론경로.png') }}" alt="파랑 정보 계산">
+                    </div>
+                    <div class="feature-content">
+                        <h3 class="feature-title">파랑 정보 계산</h3>
+                        <p class="feature-description">해양 기상 데이터와 현장 센서 정보를 종합하여 파고, 파향, 파주기 등의 파랑 정보를 실시간으로 계산하고 분석합니다.</p>
+                        <ul class="feature-list">
+                            <li class="feature-list-item">
+                                <span class="feature-icon">✓</span>
+                                <span>실시간 파고 측정</span>
+                            </li>
+                            <li class="feature-list-item">
+                                <span class="feature-icon">✓</span>
+                                <span>파향 및 파주기 분석</span>
+                            </li>
+                            <li class="feature-list-item">
+                                <span class="feature-icon">✓</span>
+                                <span>해양 기상 데이터 통합</span>
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </div>
