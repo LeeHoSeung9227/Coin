@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>COIN - 해양 정보 전달 서비스</title>
+    <script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
+
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -22,6 +26,7 @@
             --card-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
             --card-shadow-hover: 0 20px 35px -10px rgba(0, 0, 0, 0.2);
             --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --dark-gray: #1E293B; /* 또는 #2d3748 */
         }
 
         /* Global Styles */
@@ -40,6 +45,13 @@
             overflow-x: hidden;
             line-height: 1.6;
         }
+        section::before {
+        content: "";
+        display: block;
+        height: 4px;
+        background: linear-gradient(to right, #1E293B);
+        margin-bottom: 4rem;
+    }
 
         h1, h2, h3 {
             font-family: 'Poppins', 'Noto Sans KR', sans-serif;
@@ -60,16 +72,22 @@
 
         /* 섹션 타이틀 개선 */
         .section-title {
-            font-size: clamp(1.8rem, 5vw, 2.5rem); /* 반응형 폰트 크기 */
+            font-size: clamp(1.3rem, 5vw, 2.5rem); /* 반응형 폰트 크기 */
             margin-bottom: 1rem;
             text-align: center;
             line-height: 1.2;
+            position: relative;  /* position을 relative로 설정 */
+            z-index: 10;  /* z-index 값으로 가장 앞에 오게 설정 */
         }
         
         .section-subtitle {
-            font-size: clamp(0.95rem, 2.5vw, 1.1rem);
-            margin-bottom: 2rem;
-            padding: 0 1rem;
+            font-size: clamp(0.8rem, 2.5vw, 1.1rem);
+            margin-bottom: 0.8rem;
+            text-align: center;
+            position: relative;  /* position을 relative로 설정 */
+            z-index: 10;  /* z-index 값으로 가장 앞에 오게 설정 */
+            margin-bottom : 30px;
+            margin-top : 10px;
         }
 
         /* Header Styles */
@@ -200,7 +218,7 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            height: 100vh;
+            height: 90vh;
             padding-top: 70px;
             overflow: hidden;
         }
@@ -214,6 +232,17 @@
             object-fit: cover;
             z-index: -1;
         }
+        .background-gif {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 150%;
+            margin-top:90px;
+            height: 90%;
+
+            z-index: -1;
+        }
+
 
         .hero::before {
             content: "";
@@ -323,12 +352,13 @@
         }
 
         /* Services Section */
-        .services {
-            padding: 6rem 0;
+        .services{
+            padding: 2rem 0;
             background-color: var(--dark-blue);
             position: relative;
             overflow: hidden;
         }
+        
 
         .services::before {
             content: '';
@@ -343,7 +373,7 @@
 
         .services-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(280px, fr));
             gap: 2rem;
             margin-top: 3rem;
         }
@@ -360,6 +390,7 @@
             position: relative;
             overflow: hidden; /* 내용 넘침 방지 */
             top: 0;
+            border: 2px solid #00ADEF;
         }
 
         .service-card:hover {
@@ -383,6 +414,7 @@
 
         .service-card:hover::before {
             transform: scaleX(1);
+            border: 5px solid #004C99;
         }
 
         .service-image {
@@ -390,7 +422,9 @@
             height: 200px;
             object-fit: cover;
             display: block;
-            
+            margin: 0 auto; /* 가로 중앙 정렬 */
+            padding : 10px;
+            border-radius: 20px; /* 원형으로 만들기 */
         }
 
         .service-content {
@@ -407,6 +441,16 @@
             font-weight: 600;
             letter-spacing: 1px;
             margin-bottom: 0.5rem;
+ 
+        }
+        .service-type2 {
+            color: var(--primary-light);
+            text-transform: uppercase;
+            font-size: 1.0rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+ 
         }
 
         .service-name {
@@ -428,11 +472,19 @@
         }
 
         /* Features Section */
-        .features {
-            padding: 6rem 0;
-            background-color: var(--dark);
+        .features,
+        .features_e {
+            padding: 2rem 0;
         }
 
+        .features {
+            background-color: var(--dark-blue);
+        }
+
+        .features_e {
+            background-color: var(--dark);
+        }
+            
         .features-wrapper {
             display: flex;
             flex-direction: column;
@@ -443,7 +495,171 @@
             display: flex;
             align-items: center;
             gap: 4rem;
+            
         }
+        .flux-card {
+            display: flex;
+            flex-direction: row; /* 가로로로 */
+            align-items: center; /* 가운데 정렬 */
+            padding: 20px;
+        }
+        .video-container {
+        position: relative;
+        width: 350px;
+        max-width: 100%;
+        margin: auto;
+        }
+
+        video {
+        width: 100%;
+        height: auto;
+        border-radius: 10px;
+        }
+
+        .play-button {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 40px;
+        color: white;
+        background: rgba(0, 0, 0, 0.5);
+        padding: 15px;
+        border-radius: 50%;
+        cursor: pointer;
+        display: block; /* 항상 버튼 보이도록 설정 */
+        }
+
+        .video-container.playing .play-button {
+        display: none; /* 비디오가 재생될 때 버튼 숨기기 */
+        }
+
+        .image-row {
+            display: flex; /* 이미지를 가로로 나열 */
+            justify-content: space-between; /* 이미지 간격을 균등하게 */
+            width: 100%; /* 부모 요소의 너비를 100%로 설정 */
+            margin-bottom: 20px; /* 이미지 밑에 간격 */
+        }
+
+        .flux-image {
+            width: 80%; /* 각 이미지의 너비를 30%로 설정 */
+            height: auto;
+            object-fit: cover;
+            border-radius: 8px; /* 둥근 모서리 */
+        }
+        .flux-type {
+            font-size: 12px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #ffff;
+            margin-top: 10px;
+            padding: 10px 20px; /* 내부 여백을 추가하여 텍스트 주변 공간 확보 */
+            border-radius: 30px; /* 둥근 모서리 */
+            border: 2px solid #004C99; /* 파란색 테두리 */
+            text-align: center; /* 텍스트 가운데 정렬 */
+        }
+        .flux-item {
+            text-align: center; /* 텍스트를 이미지 아래 중앙 정렬 */
+            width: 30%; /* 각 이미지의 너비를 30%로 설정 */
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr); /* 2열로 구성 */
+            grid-template-rows: repeat(3, 1fr); /* 3행으로 구성 */
+            gap: 20px; /* 아이템 간의 간격 */
+            width: 100%;
+            height: 100%;
+            
+
+        }
+
+        .grid-item {
+            background: linear-gradient(to bottom, #101828, #0A3C6A); /* 파란색에서 하늘색으로 그라데이션 */
+            border-radius: 10px; /* 둥근 모서리 */
+            padding: 10px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            height : 150px;
+        }
+
+        .equation-type {
+            font-size: 10px;
+            font-weight: bold;
+            color: #ffff;
+            margin-top: 10px;
+            padding: 10px;
+        }
+        .container-eq {
+            display: flex; /* Flexbox로 두 요소를 가로로 배치 */
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 20px; /* 사진 사이 간격 */
+        }
+
+        .left-image {
+            flex: 1; /* 왼쪽 사진을 차지할 공간 */
+            width: 60%; /* 크기를 60%로 설정 */
+        }
+
+        .left-image img {
+            width: 100%; /* 사진을 부모 요소에 맞게 크기 조정 */
+            height: auto;
+            border-radius: 10px;
+        }
+
+        .right-container-eq {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            flex: 1;
+            width: 35%;
+        }
+
+        .top-image, .bottom-image {
+            margin-bottom: 10px;
+            width: 100%;
+        }
+
+        .top-image img, .bottom-image img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        .arrow {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+        }
+
+        .gradient-arrow {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(to right, #004C99, #00BFFF); /* 파란색 그라데이션 */
+            clip-path: polygon(100% 50%, 0 0%, 100% 100%);
+            transform: rotate(90deg); /* 화살표를 오른쪽으로 회전 */
+        }
+        .shape-container {
+            position: relative;
+            width: 200px;  /* 원하는 도형의 크기 */
+            height: 200px; /* 원하는 도형의 크기 */
+            background: #f0f0f0; /* 배경색 (원하는 색으로 변경 가능) */
+            border-radius: 20px; /* 도형의 둥근 모서리 설정 */
+            overflow: hidden; /* 이미지가 도형을 넘지 않도록 설정 */
+        }
+
+        .digital-image {
+            
+            width: 100%; /* 이미지 크기 설정 */
+            height: auto; /* 이미지 비율 유지 */
+            z-index: 1; /* 이미지가 도형 위에 오도록 설정 */
+            border-radius: 10px;
+        }
+        
 
         .feature-item:nth-child(even) {
             flex-direction: row-reverse;
@@ -466,6 +682,7 @@
 
         .feature-content {
             flex: 1;
+            margin : 20px;
         }
 
         .feature-title {
@@ -745,7 +962,7 @@
         @media (max-width: 768px) {
             /* 컨테이너 */
             .container {
-                padding: 0 1rem;
+                padding: 0 ;
             }
             
             /* 헤더 개선 */
@@ -761,13 +978,20 @@
                 width: 35px;
                 height: 35px;
             }
+            .digital-image {
+    
+                width: 100%; /* 이미지 크기 설정 */
+                height: auto; /* 이미지 비율 유지 */
+                z-index: 1; /* 이미지가 도형 위에 오도록 설정 */
+                border-radius: 10px;
+            }
             
             .brand-name {
-                font-size: 1.3rem;
+                font-size: 1.5rem;
             }
             
             .brand-tagline {
-                font-size: 0.5rem;
+                font-size: 0.4rem;
             }
             
             /* 네비게이션 메뉴 개선 */
@@ -843,7 +1067,7 @@
             
             /* 서비스 그리드 개선 */
             .services-grid {
-                grid-template-columns: repeat(2, 1fr); /* 모바일에서 1열로 */
+                grid-template-columns: repeat(1, 1fr); /* 모바일에서 1열로 */
                 gap: 1.5rem;
                 margin-top: 2rem;
             }
@@ -851,11 +1075,31 @@
             .service-card {
                 margin: 0 auto;
                 max-width: 300px; /* 최대 너비 제한 */
-                max-height :200px;
+                max-height :400px;
+                
             }
             
             .service-image {
+                height: 180px; /* 모바일에서 이미지 높이 줄임 */
+            }
+            .service-image2 {
+                width : 420px;
                 height: 150px; /* 모바일에서 이미지 높이 줄임 */
+                align-items: center;
+                
+            }
+            .service-image3 {
+                width : 420px;
+                height: 200px; /* 모바일에서 이미지 높이 줄임 */
+                align-items: center;
+                
+            }
+            .all-image {
+                width : 410px;
+                height: 490px; /* 모바일에서 이미지 높이 줄임 */
+
+                align-items: center;
+                
             }
             
             .service-content {
@@ -887,7 +1131,7 @@
             }
             
             .feature-image {
-                max-width: 100%;
+                max-width: 80%;
                 order: 1;
             }
             
@@ -896,7 +1140,7 @@
             }
             
             .feature-title {
-                font-size: 1.5rem;
+                font-size: 1.3rem;
                 margin-bottom: 1rem;
             }
             
@@ -1025,8 +1269,7 @@
         
         <nav class="nav-menu">
             <a href="#overview" class="nav-link">프로젝트 개요</a>
-            <a href="#rip-current" class="nav-link">이안류 탐지</a>
-            <a href="#patrol-protocol" class="nav-link">정찰 프로토콜</a>
+            <a href="#rip-current" class="nav-link">이안류 탐지 프로토콜</a>
             <a href="#digital-twin" class="nav-link">디지털 트윈</a>
             <a href="#user-services" class="nav-link">맞춤 서비스</a>
             <a href="#contact" class="nav-link">팀 소개</a>
@@ -1037,10 +1280,8 @@
     <!-- Hero Section -->
     <section class="hero" id="home">
         <!-- Background Video -->
-        <video autoplay muted loop>
-            <source src="{{ url_for('static', filename='videos/움직인다.mp4') }}" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
+        <img src="{{ url_for('static', filename='images/움직인다.gif') }}" alt="움직이는 이미지" class="background-gif" />
+
         
         <div class="hero-content">
             <h1 class="hero-title">해양 위험, 실시간으로 보다</h1>
@@ -1066,233 +1307,116 @@
             <p class="section-subtitle">해양 안전 문제 해결을 위한 COIN 프로젝트의 비전과 목표</p>
             <div class="services-grid">
                 <div class="service-card">
-                    <img src="{{ url_for('static', filename='images/이안류.png') }}" alt="해양 안전 문제" class="service-image">
                     <div class="service-content">
-                        <span class="service-type">Problem</span>
+                        <span class="service-type">Problem.1</span>
                         <div class="service-name">
                             <span>이안류란</span>
                         </div>
-                        <p class="service-description">이안류(rip current)는 역류라고도 불리며 해안가쪽이 아닌 바깥쪽으로 빠르게 이동하는 해수의 흐름입니다. <br> 파도가 해변으로 밀려오고 해안선 가까이에서 물이 모여 빠져나가면서 좁고 빠른 물살의 흐름을 형성합니다. 이 현상은 주로 모래톱이나 해안 지형의 불규칙성에 의해 발생합니다. <br> 이안류의 속도는 1초의 약 3m 시속 10km/h 이상이다. 이는 수영속도의 2배 이상 빠르기에 일반인의 힘으로 거스를 수 없는 강한 흐름입니다.</p>
+                        <p class="service-description">이안류는 역류라고 불리며 해안가에서 외해로 빠르게 이동하여 인명 피해를 유발하는 해빈류입니다..</p>
                     </div>
+                    <img src="{{ url_for('static', filename='images/이안류란.jpg') }}" alt="해양 안전 문제" class="service-image">
                 </div>
 
                 <div class="service-card">
-                    <img src="{{ url_for('static', filename='images/해양안전.png') }}" alt="해양 안전 문제" class="service-image">
                     <div class="service-content">
                         <span class="service-type">Problem</span>
                         <div class="service-name">
-                            <span>해양 안전 문제</span>
+                            <span>인명구조</span>
                         </div>
-                        <p class="service-description">매년 증가하는 해양 사고와 이안류로 인한 인명피해는 심각한 사회적 문제입니다. 전통적인 안전 관리 방식으로는 실시간 위험 상황에 대한 대응이 한계가 있습니다.</p>
+                        <p class="service-description">매년 증가하는 해양 사고와 이안류로 인한 인명 피해는 필수적으로 해결해야할 사과적 문제입니다.</p>
                     </div>
+                    <img src="{{ url_for('static', filename='images/인명구조.jpg') }}" alt="해양 안전 문제" class="service-image">
                 </div>
                 
                 <div class="service-card">
-                    <img src="{{ url_for('static', filename='images/영상화면.png') }}" alt="COIN 프로젝트 목표" class="service-image">
                     <div class="service-content">
-                        <span class="service-type">Solution</span>
+                        <span class="service-type">Solution.1</span>
                         <div class="service-name">
-                            <span>COIN 프로젝트 목표</span>
+                            <span>COIN의 프로젝트</span>
                         </div>
-                        <p class="service-description">CCTV 영상 분석과 드론 정찰을 통한 실시간 이안류 탐지 시스템 구축으로 해양 안전 사고를 예방하고, 사용자 맞춤형 안전 정보를 제공합니다.</p>
+                        <p class="service-description">CCTV 영상 분석을 통한 실시간 이안류 감지 시스템 구축을 통한 관리자, 연구자, 이용객들에게 필요한 정보를 제공합니다.</p>
                     </div>
+                    <img src="{{ url_for('static', filename='images/이안류CCTV.png') }}" alt="COIN 프로젝트 목표" class="service-image">
                 </div>
 
                 <div class="service-card">
-                    <img src="{{ url_for('static', filename='images/가상환경.png') }}" alt="프로젝트 필요성" class="service-image">
+                    
                     <div class="service-content">
-                        <span class="service-type">Innovation</span>
+                        <span class="service-type">Solution.2</span>
                         <div class="service-name">
-                            <span>프로젝트 필요성</span>
+                            <span>디지털 트윈</span>
                         </div>
-                        <p class="service-description">AI 기반 실시간 분석과 디지털 트윈 기술을 활용하여 해수욕객, 관리자, 연구자 모두에게 필요한 정보를 적시에 제공하는 통합 솔루션이 필요합니다.</p>
+                        <p class="service-description">매년 증가하는 해양 사고와 이안류로 인한 인명 피해는 필수적으로 해결해야 할 사회적 문제입니다.</p>
                     </div>
+                    <img src="{{ url_for('static', filename='images/드론사진.png') }}" alt="프로젝트 필요성" class="service-image">
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Rip Current Detection Section -->
+    
+
     <section class="features" id="rip-current">
         <div class="container">
-            <h2 class="section-title">이안류 탐지 시스템</h2>
-            <p class="section-subtitle">실시간 CCTV 영상 분석을 통한 AI 기반 이안류 탐지 기술</p>
+            <p class="section-subtitle">COIN과 함께하는 스마트 해양 안전 서비스</p>
+            <h2 class="section-title">실시간 이안류 탐지 프로토콜 </h2>
             <div class="features-wrapper">
                 <div class="feature-item">
                     <div class="feature-image">
-                        <img src="{{ url_for('static', filename='images/이안류 원인.png') }}" alt="CCTV 영상 분석">
-                    </div>
-                    <div class="feature-content">
-                        <h3 class="feature-title">이안류 발생 원인 및 요약</h3>
-                        <p class="feature-description">이안류는 곧 쇄파되지 않은 높은 에너지를 해소하기 위해 발생하기 때문에 이를 위해, 카메라 이미지상 픽셀별 에너지 준위인 𝐸_𝑓𝑙𝑢𝑥를 계산하여, 높은 𝐸_𝑓𝑙𝑢𝑥를 중심으로 드론 정찰 계획을 세운다.</p>
-                        <ul class="feature-list">
-                            <li class="feature-list-item">
-                                <span class="feature-icon">✓</span>
-                                <span>수심파악을 하여 해저 지형에 따른 불균형 확인인</span>
-                            </li>
-                            <li class="feature-list-item">
-                                <span class="feature-icon">✓</span>
-                                <span>수심역산을 통해 𝐸_𝑓𝑙𝑢𝑥 계산</span>
-                            </li>
-                            <li class="feature-list-item">
-                                <span class="feature-icon">✓</span>
-                                <span>𝐸_𝑓𝑙𝑢𝑥 위험도 기반으로 드론정찰</span>
-                            </li>
-                        </ul>
+                        <img src="{{ url_for('static', filename='images/이안류CCTV.png') }}" alt="CCTV 영상 분석">
+                        <p class="section-subtitle">실시간 CCTV영상을 기반으로 COIN만의 알고리즘으로 <br>영상 분석을 진행하고 이를 통해 이안류 발생 패턴을 감지합니다.</p>
                     </div>
                 </div>
             
             <div class="features-wrapper">
                 <div class="feature-item">
-                    <div class="feature-image">
-                        <img src="{{ url_for('static', filename='images/영상화면.png') }}" alt="CCTV 영상 분석">
-                    </div>
                     <div class="feature-content">
-                        <h3 class="feature-title">CCTV 영상 분석</h3>
-                        <p class="feature-description">실시간 CCTV 영상을 AI 알고리즘으로 분석하여 이안류 발생 패턴을 감지합니다. 컴퓨터 비전 기술을 활용해 파도의 움직임과 흐름을 실시간으로 모니터링합니다.</p>
-                        <ul class="feature-list">
-                            <li class="feature-list-item">
-                                <span class="feature-icon">✓</span>
-                                <span>실시간 영상 처리 및 분석</span>
-                            </li>
-                            <li class="feature-list-item">
-                                <span class="feature-icon">✓</span>
-                                <span>AI 기반 패턴 인식</span>
-                            </li>
-                            <li class="feature-list-item">
-                                <span class="feature-icon">✓</span>
-                                <span>자동 위험 상황 감지</span>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                
-                <div class="feature-item">
-                    <div class="feature-image">
-                        <img src="{{ url_for('static', filename='images/파랑정보.png') }}" alt="파랑 정보 계산">
-                    </div>
-                    <div class="feature-content">
-                        <h3 class="feature-title">파랑 정보 계산</h3>
-                        <p class="feature-description">해양 기상 데이터와 현장 센서 정보를 종합하여 파고, 파향, 파주기 등의 파랑 정보를 실시간으로 계산하고 분석합니다.</p>
-                        <ul class="feature-list">
-                            <li class="feature-list-item">
-                                <span class="feature-icon">✓</span>
-                                <span>실시간 파고 측정</span>
-                            </li>
-                            <li class="feature-list-item">
-                                <span class="feature-icon">✓</span>
-                                <span>파향 및 파주기 분석</span>
-                            </li>
-                            <li class="feature-list-item">
-                                <span class="feature-icon">✓</span>
-                                <span>해양 기상 데이터 통합</span>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                
-                <div class="feature-item">
-                    <div class="feature-image">
-                        <img src="{{ url_for('static', filename='images/에너지플럭스계산.png') }}" alt="E_flux 산출법">
-                    </div>
-                    <div class="feature-content">
-                        <h3 class="feature-title">𝐸_𝑓𝑙𝑢𝑥 산출법</h3>
-                        <p class="feature-description">𝐸_𝑓𝑙𝑢𝑥 = 1/8x (ρ × g × H² × C_g × cos(θ)) dt<br>에너지 플럭스 계산을 통해 이안류의 강도와 방향을 정량적으로 측정하여 위험도를 평가합니다.</p>
-                        <ul class="feature-list">
-                            <li class="feature-list-item">
-                                <span class="feature-icon">✓</span>
-                                <span>수심역산을 통한 𝐸_𝑓𝑙𝑢𝑥 실시간 계산</span>
-                            </li>
-                            <li class="feature-list-item">
-                                <span class="feature-icon">✓</span>
-                                <span>위험도 정량적 평가</span>
-                            </li>
-                            <li class="feature-list-item">
-                                <span class="feature-icon">✓</span>
-                                <span>𝐸_𝑓𝑙𝑢𝑥 집중 구역 파악</span>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+                        <span class="service-type">Process.1</span>
+                        <h3 class="feature-title">이안류와 에너지 플럭스(\(E_{flux}\))</h3>
+                        <img src="{{ url_for('static', filename='images/에너지플럭스.png') }}" alt="픽셀별강도", class = 'service-image2'>
+                        <p class="section-subtitle">이안류는 쇄파 이후 잉여응력에 의해 발생한 해빈류가 <br>해저 지형에 집중되며 형성되는 역류입니다.</p>
+                        <div class="grid-container">
+                            <div class="grid-item">
+                                <span class="equation-type"><p class="section-subtitle">천수방정식</p>\( S_{xx} = E\left[\frac{C_g}{C} \left( \cos^2 \theta + 1 \right) - \frac{1}{2} \right] \) </span>
+                            </div>
+                            <div class="grid-item">
+                                <span class="equation-type"><p class="section-subtitle">잉여응력항 고려</p>\( S_{xx} = E\left[\frac{C_g}{C} \left( \cos^2 \theta + 1 \right) - \frac{1}{2} \right] \)</span>
+                            </div>
+                            <div class="grid-item">
+                                <span class="equation-type"><p class="section-subtitle">잉여응력과 에너지 변화</p> \( S_{xx} = E\left[\frac{C_g}{C} \left( \cos^2 \theta + 1 \right) - \frac{1}{2} \right] \)</span>
+                            </div>
+                            <div class="grid-item">
+                                <span class="equation-type"><p class="section-subtitle">"Longuet-Higgins et al. (1964)</p> <br>\( S_{xy} = E\left[\frac{C_g}{C} \sin \theta \cos \theta \right] \)</span>
+                            </div>
+                            <div class="grid-item">
+                                <span class="equation-type"><p class="section-subtitle">에너지 플럭스(\(E_flux\))</p>\( E_{flux} = E \cdot C_g \)</span>
+                            </div>
+                            <div class="grid-item">
+                                <span class="equation-type"><p class="section-subtitle">잉여응력과 \(E_flux\)</p>\( \nabla \cdot S \propto \nabla (E \cdot C_g) \)</span>
+                            </div>
+                        </div>
+                        <p class="section-subtitle">잉여응력의 발산(∇⋅𝑆)은 에너지 플럭스와 비례 관계를 가지며, <br>에너지 플럭스 (\(E_{flux})\)을 통하여 <br> 이안류 발생 가능성 예측이 가능함을 알 수 있습니다.</p>
+                        <span class="service-type">Process.1</span>
+                        <h3 class="feature-title">CCTV 영상 사영보정</h3>
+                        <p class="section-subtitle">구글 어스를 활용하여 기준 좌표를 설정하여 사영보정을 진행하였습니다.</p>
+                        <img src="{{ url_for('static', filename='images/사영보정.png') }}" alt="픽셀별강도", class = 'service-image2'>
+                        <p class="section-subtitle">실시간 CCTV영상을 기반으로 COIN만의 알고리즘으로 <br>영상 분석을 진행하고 이를 통해 이안류 발생 패턴을 감지합니다.</p>
+                        
+                        <span class="service-type">Process.2</span>
+                        <h3 class="feature-title">픽셀별 강도 시계열 데이터 취득</h3>
+                        <img src="{{ url_for('static', filename='images/픽셀별강도.png') }}" alt="픽셀별강도", class = 'service-image2'>
+                        <p class="section-subtitle">Gray 스케일로 변환한 뒤 픽셀 별 강도 시계열 데이터를 <br> 30Hz로 취득하였습니다.</p>
 
-    <section class="features" id="patrol-protocol">
-        <div class="container">
-            <h2 class="section-title">드론 정찰 프로토콜</h2>
-            <p class="section-subtitle">드론을 활용한 해양 정찰 시스템템</p>
-            <div class="features-wrapper">
-                <div class="feature-item">
-                    <div class="feature-image">
-                        <img src="{{ url_for('static', filename='images/드론알고리즘.png') }}" alt="CCTV 영상 분석">
-                    </div>
-                    <div class="feature-content">
-                        <h3 class="feature-title">알고리즘 요약도</h3>
-                        <p class="feature-description">이안류는 곧 쇄파되지 않은 높은 에너지를 해소하기 위해 발생하기 때문에 이를 위해, 카메라 이미지상 픽셀별 에너지 준위인 𝐸_𝑓𝑙𝑢𝑥를 계산하여, 높은 𝐸_𝑓𝑙𝑢𝑥를 중심으로 드론 정찰 계획을 세운다.</p>
-                        <ul class="feature-list">
-                            <li class="feature-list-item">
-                                <span class="feature-icon">✓</span>
-                                <span>수심파악을 하여 해저 지형에 따른 불균형 확인인</span>
-                            </li>
-                            <li class="feature-list-item">
-                                <span class="feature-icon">✓</span>
-                                <span>수심역산을 통해 𝐸_𝑓𝑙𝑢𝑥 계산</span>
-                            </li>
-                            <li class="feature-list-item">
-                                <span class="feature-icon">✓</span>
-                                <span>𝐸_𝑓𝑙𝑢𝑥 위험도 기반으로 드론정찰</span>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            
-            <div class="features-wrapper">
-                <div class="feature-item">
-                    <div class="feature-image">
-                        <img src="{{ url_for('static', filename='images/군집화.png') }}" alt="CCTV 영상 분석">
-                    </div>
-                    <div class="feature-content">
-                        <h3 class="feature-title">CCTV 영상 분석</h3>
-                        <p class="feature-description">실시간 CCTV 영상을 AI 알고리즘으로 분석하여 이안류 발생 패턴을 감지합니다. 컴퓨터 비전 기술을 활용해 파도의 움직임과 흐름을 실시간으로 모니터링합니다.</p>
-                        <ul class="feature-list">
-                            <li class="feature-list-item">
-                                <span class="feature-icon">✓</span>
-                                <span>실시간 영상 처리 및 분석</span>
-                            </li>
-                            <li class="feature-list-item">
-                                <span class="feature-icon">✓</span>
-                                <span>AI 기반 패턴 인식</span>
-                            </li>
-                            <li class="feature-list-item">
-                                <span class="feature-icon">✓</span>
-                                <span>자동 위험 상황 감지</span>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                
-                <div class="feature-item">
-                    <div class="feature-image">
-                        <img src="{{ url_for('static', filename='images/드론경로.png') }}" alt="파랑 정보 계산">
-                    </div>
-                    <div class="feature-content">
-                        <h3 class="feature-title">파랑 정보 계산</h3>
-                        <p class="feature-description">해양 기상 데이터와 현장 센서 정보를 종합하여 파고, 파향, 파주기 등의 파랑 정보를 실시간으로 계산하고 분석합니다.</p>
-                        <ul class="feature-list">
-                            <li class="feature-list-item">
-                                <span class="feature-icon">✓</span>
-                                <span>실시간 파고 측정</span>
-                            </li>
-                            <li class="feature-list-item">
-                                <span class="feature-icon">✓</span>
-                                <span>파향 및 파주기 분석</span>
-                            </li>
-                            <li class="feature-list-item">
-                                <span class="feature-icon">✓</span>
-                                <span>해양 기상 데이터 통합</span>
-                            </li>
-                        </ul>
+                        <span class="service-type">Process.3</span>
+                        <h3 class="feature-title">픽셀별 \(E_{flux}\)연산</h3>
+                        <img src="{{ url_for('static', filename='images/수식계산.png') }}" alt="픽셀별강도", class = 'service-image3'>
+                        <div class="video-container" id="video-container">
+                        <video id="my-video" controls>
+                            <source src="{{ url_for('static', filename='videos/에너지플럭스계산.mp4') }}" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        </div>
+                        <p class="section-subtitle">1분동안 1,800 장의 프레임을 분석하여,실시간 \(E_{flux}\)를 산출 하였습니다.</p>
                     </div>
                 </div>
             </div>
@@ -1300,81 +1424,47 @@
     </section>
 
     <!-- Digital Twin Section -->
-    <section class="features" id="digital-twin">
-        <div class="container">
-            <h2 class="section-title">디지털 트윈 시스템</h2>
-            <p class="section-subtitle">가상환경과 실제 환경을 연동한 실시간 모니터링</p>
-            
+    <section class="features_e" id="digital-twin">
+
+            <p class="section-subtitle">COIN과 함께하는 스마트 해양 안전 서비스</p>
+            <h2 class="section-title">드론 정찰 프로토콜과 디지털 트윈</h2>
             <div class="features-wrapper">
                 <div class="feature-item">
                     <div class="feature-image">
-                        <img src="images/환경 보호 활동가-김환경.png" alt="ROS2 시스템">
-                    </div>
-                    <div class="feature-content">
-                        <h3 class="feature-title">ROS2 시스템</h3>
-                        <p class="feature-description">Robot Operating System 2를 기반으로 드론과 센서 데이터를 실시간으로 수집하고 처리하여 가상환경과 동기화합니다.</p>
-                        <ul class="feature-list">
-                            <li class="feature-list-item">
-                                <span class="feature-icon">✓</span>
-                                <span>실시간 데이터 수집 및 처리</span>
-                            </li>
-                            <li class="feature-list-item">
-                                <span class="feature-icon">✓</span>
-                                <span>드론-센서 통합 관리</span>
-                            </li>
-                            <li class="feature-list-item">
-                                <span class="feature-icon">✓</span>
-                                <span>가상환경 동기화</span>
-                            </li>
-                        </ul>
+                        <img src="{{ url_for('static', filename='images/드론사진.png') }}" alt="CCTV 영상 분석">
+                        <p class="section-subtitle">계산된 픽셀 별 파랑 \(E_{flux}\)를 기반으로 드론 정찰<br>경로를 세우고 디지털 트윈과 연동됩니다.</p>
                     </div>
                 </div>
-                
+            
+            <div class="features-wrapper">
                 <div class="feature-item">
-                    <div class="feature-image">
-                        <img src="images/어촌주민-박어부.png" alt="Unreal Engine">
-                    </div>
+
                     <div class="feature-content">
-                        <h3 class="feature-title">Unreal Engine</h3>
-                        <p class="feature-description">고품질 3D 가상환경을 구축하여 실제 해수욕장을 디지털로 재현하고, 실시간 데이터를 반영한 시뮬레이션을 제공합니다.</p>
-                        <ul class="feature-list">
-                            <li class="feature-list-item">
-                                <span class="feature-icon">✓</span>
-                                <span>고품질 3D 가상환경 구축</span>
-                            </li>
-                            <li class="feature-list-item">
-                                <span class="feature-icon">✓</span>
-                                <span>실제 환경 디지털 재현</span>
-                            </li>
-                            <li class="feature-list-item">
-                                <span class="feature-icon">✓</span>
-                                <span>실시간 시뮬레이션</span>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                
-                <div class="feature-item">
-                    <div class="feature-image">
-                        <img src="images/해수욕장 관리자-최금지.png" alt="실시간 관측">
-                    </div>
-                    <div class="feature-content">
-                        <h3 class="feature-title">실시간 관측</h3>
-                        <p class="feature-description">사용자는 웹 브라우저를 통해 실시간으로 해수욕장 상황을 3D 가상환경에서 확인하고, 위험 지역과 안전 정보를 직관적으로 파악할 수 있습니다.</p>
-                        <ul class="feature-list">
-                            <li class="feature-list-item">
-                                <span class="feature-icon">✓</span>
-                                <span>웹 기반 실시간 모니터링</span>
-                            </li>
-                            <li class="feature-list-item">
-                                <span class="feature-icon">✓</span>
-                                <span>직관적 3D 인터페이스</span>
-                            </li>
-                            <li class="feature-list-item">
-                                <span class="feature-icon">✓</span>
-                                <span>위험 지역 시각화</span>
-                            </li>
-                        </ul>
+                        <span class="service-type">Process.1</span>
+                        <h3 class="feature-title">\(E_{flux}\)군집화</h3>
+                        <img src="{{ url_for('static', filename='images/군집화.png') }}" alt="군집", class = 'service-image2'>
+                        
+                        <span class="service-type">Process.2</span>
+                        <h3 class="feature-title">경로 계산</h3>
+                        <img src="{{ url_for('static', filename='images/경로계산.png') }}" alt="군집", class = 'service-image2'>
+                        <p class="section-subtitle">군집화된 결과를 기반으로 드론 정찰 경로를 <br>Prim 알고리즘을 활용하여 제작하였습니다.</p>
+
+                        <span class="service-type">Process.3</span>
+                        <h3 class="feature-title">디지털 트윈</h3>
+
+                        <img src="{{ url_for('static', filename='images/디지털트윈.png') }}" alt="Image" class="service-image2">
+
+                        <p class="section-subtitle">계산된 \(E_{flux}\)를 기반으로 DBSCAN 을 활용하여, 밀도 기반 군집화를 진행하였습니다.</p>
+
+                        <span class="service-type">Process.4</span>
+                        <h3 class="feature-title">드론 구현</h3>
+ 
+                        <img src="{{ url_for('static', filename='images/드론구현.png') }}" alt="Image" class="service-image2">
+
+                        <span class="service-type">ALL PROCESS</span>
+                        <h3 class="feature-title">드론 구현</h3>
+                        <img src="{{ url_for('static', filename='images/전체프로세스.png') }}" alt="Image" class="all-image">
+
                     </div>
                 </div>
             </div>
@@ -1388,27 +1478,7 @@
             <p class="section-subtitle">다양한 사용자 그룹을 위한 특화된 해양 안전 정보 서비스</p>
             
             <div class="services-grid">
-                <a href="{{ url_for('user.user') }}" class="service-card">
-                    <img src="{{ url_for('static', filename='images/About us.png') }}" alt="해수욕객 서비스" class="service-image">
-                    <div class="service-content">
-                        <span class="service-type">Beachgoers</span>
-                        <div class="service-name">
-                            <span>해수욕객 서비스</span>
-                        </div>
-                        <p class="service-description">실시간 위험 경고, 위치 기반 안전 정보, 혼잡도 정보, 모바일 알림을 통한 안전한 해수욕 환경을 제공합니다.</p>
-                    </div>
-                </a>
-                
-                <a href="{{ url_for('lifeguard') }}" class="service-card">
-                    <img src="{{ url_for('static', filename='images/About us.png') }}" alt="관리자/안전요원 서비스" class="service-image">
-                    <div class="service-content">
-                        <span class="service-type">Management</span>
-                        <div class="service-name">
-                            <span>관리자/안전요원 서비스</span>
-                        </div>
-                        <p class="service-description">CCTV 실시간 영상, 드론 경로 설정, 위험 상황 대시보드, 긴급 대응 시스템을 통한 통합 관리 솔루션을 제공합니다.</p>
-                    </div>
-                </a>
+              
 
                 <a href="{{ url_for('admin') }}" class="service-card">
                     <img src="{{ url_for('static', filename='images/About us.png') }}" alt="정부/연구자 서비스" class="service-image">
@@ -1421,16 +1491,6 @@
                     </div>
                 </a>
 
-                <div class="service-card">
-                    <img src="{{ url_for('static', filename='images/About us.png') }}" alt="해양 스포츠 활동가 서비스" class="service-image">
-                    <div class="service-content">
-                        <span class="service-type">Sports</span>
-                        <div class="service-name">
-                            <span>해양 스포츠 활동가 서비스</span>
-                        </div>
-                        <p class="service-description">파고/수온 정보, 바람 방향 데이터, 활동 적정 시간대, 해수욕장별 조건 비교를 통한 전문 정보를 제공합니다.</p>
-                    </div>
-                </div>
             </div>
         </div>
     </section>
@@ -1496,7 +1556,7 @@
                     <h3 class="footer-title">팀 구성</h3>
                     <div class="footer-links">
                         <div class="footer-link">지도교수: 신성원 교수님</div>
-                        <div class="footer-link">전공 분야: 연안해양공학</div>
+                        <div class="footer-link">전공 분야: 연안공학 및 컴퓨터공학</div>
                         <div class="footer-link">프로젝트 리더: 이호승</div>
                         <div class="footer-link">담당 업무: 총괄 관리</div>
                     </div>
@@ -1620,6 +1680,25 @@
                 header.classList.remove('scrolled');
             }
         });
+        var video = document.getElementById('my-video');
+        var container = document.getElementById('video-container');
+        var playButton = document.querySelector('.play-button');
+
+        // 비디오가 끝날 때 화살표 버튼을 다시 보이게 함
+        video.addEventListener('ended', function() {
+            container.classList.remove('playing'); // 비디오가 끝나면 'playing' 클래스 제거
+        });
+
+        // 비디오 재생/일시 정지 함수
+        function playVideo() {
+            if (video.paused) {
+            video.play();
+            container.classList.add('playing');  // 비디오가 재생되면 화살표 버튼 숨기기
+            } else {
+            video.pause();
+            container.classList.remove('playing');  // 비디오가 일시 정지되면 화살표 버튼 보이기
+            }
+        }
     </script>
 </body>
 </html>
