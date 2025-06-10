@@ -384,7 +384,7 @@
             overflow: hidden;
             transition: var(--transition);
             box-shadow: var(--card-shadow);
-            height: 350px;
+            height: 360px;
             display: flex;
             flex-direction: column;
             position: relative;
@@ -418,6 +418,15 @@
         }
 
         .service-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            display: block;
+            margin: 0 auto; /* 가로 중앙 정렬 */
+            padding : 10px;
+            border-radius: 20px; /* 원형으로 만들기 */
+        }
+        .research-image {
             width: 100%;
             height: 200px;
             object-fit: cover;
@@ -1082,6 +1091,15 @@
             .service-image {
                 height: 180px; /* 모바일에서 이미지 높이 줄임 */
             }
+            .research-image {
+            width: 80%;
+            height: 200px;
+            object-fit: cover;
+            display: block;
+            margin: 0 auto; /* 가로 중앙 정렬 */
+            padding : 10px;
+            border-radius: 20px; /* 원형으로 만들기 */
+        }
             .service-image2 {
                 width : 420px;
                 height: 150px; /* 모바일에서 이미지 높이 줄임 */
@@ -1091,6 +1109,18 @@
             .service-image3 {
                 width : 420px;
                 height: 200px; /* 모바일에서 이미지 높이 줄임 */
+                align-items: center;
+                
+            }
+            .service-image4 {
+                width : 420px;
+                height: 120px; /* 모바일에서 이미지 높이 줄임 */
+                align-items: center;
+                
+            }
+            .service-image5 {
+                width : 420px;
+                height: 240px; /* 모바일에서 이미지 높이 줄임 */
                 align-items: center;
                 
             }
@@ -1174,8 +1204,9 @@
             
             .about-description {
                 font-size: 0.95rem;
-                text-align: left;
+                text-align: center;
                 margin-bottom: 1.5rem;
+                padding : 15px;
             }
             
             .stats {
@@ -1375,26 +1406,9 @@
                         <h3 class="feature-title">이안류와 에너지 플럭스(\(E_{flux}\))</h3>
                         <img src="{{ url_for('static', filename='images/에너지플럭스.png') }}" alt="픽셀별강도", class = 'service-image2'>
                         <p class="section-subtitle">이안류는 쇄파 이후 잉여응력에 의해 발생한 해빈류가 <br>해저 지형에 집중되며 형성되는 역류입니다.</p>
-                        <div class="grid-container">
-                            <div class="grid-item">
-                                <span class="equation-type"><p class="section-subtitle">천수방정식</p>\( S_{xx} = E\left[\frac{C_g}{C} \left( \cos^2 \theta + 1 \right) - \frac{1}{2} \right] \) </span>
-                            </div>
-                            <div class="grid-item">
-                                <span class="equation-type"><p class="section-subtitle">잉여응력항 고려</p>\( S_{xx} = E\left[\frac{C_g}{C} \left( \cos^2 \theta + 1 \right) - \frac{1}{2} \right] \)</span>
-                            </div>
-                            <div class="grid-item">
-                                <span class="equation-type"><p class="section-subtitle">잉여응력과 에너지 변화</p> \( S_{xx} = E\left[\frac{C_g}{C} \left( \cos^2 \theta + 1 \right) - \frac{1}{2} \right] \)</span>
-                            </div>
-                            <div class="grid-item">
-                                <span class="equation-type"><p class="section-subtitle">"Longuet-Higgins et al. (1964)</p> <br>\( S_{xy} = E\left[\frac{C_g}{C} \sin \theta \cos \theta \right] \)</span>
-                            </div>
-                            <div class="grid-item">
-                                <span class="equation-type"><p class="section-subtitle">에너지 플럭스(\(E_flux\))</p>\( E_{flux} = E \cdot C_g \)</span>
-                            </div>
-                            <div class="grid-item">
-                                <span class="equation-type"><p class="section-subtitle">잉여응력과 \(E_flux\)</p>\( \nabla \cdot S \propto \nabla (E \cdot C_g) \)</span>
-                            </div>
-                        </div>
+                        <img src="{{ url_for('static', filename='images/수식1.png') }}" alt="픽셀별강도", class = 'service-image4'>
+                        <img src="{{ url_for('static', filename='images/수식2.png') }}" alt="픽셀별강도", class = 'service-image5'>
+                        
                         <p class="section-subtitle">잉여응력의 발산(∇⋅𝑆)은 에너지 플럭스와 비례 관계를 가지며, <br>에너지 플럭스 (\(E_{flux})\)을 통하여 <br> 이안류 발생 가능성 예측이 가능함을 알 수 있습니다.</p>
                         <span class="service-type">Process.1</span>
                         <h3 class="feature-title">CCTV 영상 사영보정</h3>
@@ -1481,7 +1495,7 @@
               
 
                 <a href="{{ url_for('admin') }}" class="service-card">
-                    <img src="{{ url_for('static', filename='images/About us.png') }}" alt="정부/연구자 서비스" class="service-image">
+                    <img src="{{ url_for('static', filename='images/관리자.png') }}" alt="정부/연구자 서비스" class="research-image">
                     <div class="service-content">
                         <span class="service-type">Research</span>
                         <div class="service-name">
@@ -1508,16 +1522,16 @@
                 <div class="about-text">
                     <h3 class="about-title">COIN: 해양 정보 혁신</h3>
                     <p class="about-description">
-                        COIN(Coastal Innovation)은 해양융합공학과 캡스톤 프로젝트로, 연안 안전을 위해 이용객 및 관리자에게 정보를 제공하는 프해양 관련 다양한 이해관계자들에게 맞춤형 정보를 제공하는 플랫폼입니다. 우리는 지속 가능한 해양 활동과 생태계 보존을 위한 혁신적인 솔루션을 개발하고 있습니다.
+                        COIN(Coastal Innovation)은 해양융합공학과 연안해양공학과 컴퓨터 공학을 접목시킨 캡스톤 프로젝트로, 연안 안전을 위해 이용객 및 관리자에게 정보를 제공하는 해양 관련 다양한 이해관계자들에게 맞춤형 정보를 제공하는 플랫폼입니다. 우리는 지속 가능한 해양 활동과 생태계 보존을 위한 혁신적인 솔루션을 개발하고 있습니다.
                     </p>
                     <p class="about-description">
-                        환경보호 활동가부터 어촌 주민, 해수욕장 관리자, 안전요원, 해양스포츠 애호가까지 다양한 사용자의 니즈를 반영한 서비스로, 해양 정보의 접근성을 높이고 해양 환경 보호에 기여하고자 합니다.
+                        휩쓸릴 경우 큰 사고로 이어지는 이안류, 대부분의 사람들은 <br>모를 뿐더러 대처방법도 알지 못합니다. 이에 저희는 실시간으로 이안류 위험지역 탐색 및 정찰 프로토콜을 개발하였고 정부와 협업하여 안전한 해양을 만드는것이 저희의 최종 목표입니다
                     </p>
                     
                     <div class="stats">
                         <div class="stat-item">
-                            <div class="stat-number">7</div>
-                            <div class="stat-label">사용자 프로필</div>
+                            <div class="stat-number">0</div>
+                            <div class="stat-label">연안사고 발생률 0%</div>
                         </div>
                         <div class="stat-item">
                             <div class="stat-number">24/7</div>
@@ -1525,7 +1539,7 @@
                         </div>
                         <div class="stat-item">
                             <div class="stat-number">100%</div>
-                            <div class="stat-label">사용자 중심 설계</div>
+                            <div class="stat-label">더 나은 연안</div>
                         </div>
                     </div>
                 </div>
@@ -1553,22 +1567,23 @@
                 </div>
                 
                 <div class="footer-column">
-                    <h3 class="footer-title">팀 구성</h3>
+                    <h3 class="footer-title">지도교수 및 전공분야</h3>
                     <div class="footer-links">
                         <div class="footer-link">지도교수: 신성원 교수님</div>
-                        <div class="footer-link">전공 분야: 연안공학 및 컴퓨터공학</div>
-                        <div class="footer-link">프로젝트 리더: 이호승</div>
-                        <div class="footer-link">담당 업무: 총괄 관리</div>
+                        <div class="footer-link">전공 분야: 연안공학</div>
+                        <div class="footer-link">부전공 분야: 컴퓨터공학</div>
+
                     </div>
                 </div>
                 
                 <div class="footer-column">
                     <h3 class="footer-title">팀원</h3>
                     <div class="footer-links">
-                        <div class="footer-link">김민수 - AI 개발</div>
-                        <div class="footer-link">박지영 - 드론 시스템</div>
-                        <div class="footer-link">최준호 - 웹 개발</div>
-                        <div class="footer-link">정수빈 - 데이터 분석</div>
+                        <div class="footer-link">이호승 - 해양융합공학과 / ICT융합학부</div>
+                        <div class="footer-link">이상엽 - 해양융합공학과 / 로봇공학과</div>
+                        <div class="footer-link">최문기 - 해양융합공학과 </div>
+                        <div class="footer-link">박민석 - 해양융합공학과 / 산업경영공학과</div>
+                        <div class="footer-link">서주은은 - 해양융합공학과 / 컴퓨터학부</div>
                     </div>
                 </div>
                 
@@ -1577,15 +1592,15 @@
                     <div class="footer-contact">
                         <p class="contact-item">
                             <span>📧</span>
-                            <span>coin.project@university.ac.kr</span>
+                            <span>dlghtmd@hanyang.ac.kr</span>
                         </p>
                         <p class="contact-item">
                             <span>📱</span>
-                            <span>02-1234-5678</span>
+                            <span>010-8226-9227</span>
                         </p>
                         <p class="contact-item">
                             <span>📍</span>
-                            <span>서울특별시 종로구 대학로 123</span>
+                            <span>그냥 한양대학로 55 제 1과학기술관 연안해양공학연구실</span>
                         </p>
                     </div>
                 </div>
