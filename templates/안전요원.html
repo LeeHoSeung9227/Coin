@@ -17,11 +17,14 @@
             display: flex;
             flex-direction: row;
             width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
             align-items: stretch; /* 높이 맞추기 */
             padding: 20px; /* 여백 추가 */
+            gap: 20px;
         }
         .large-box {
-            width: 50.00%;
+            width: 60%;
             background-color: #e0e0e0;
             border: 2px solid #007BFF;
             border-radius: 10px;
@@ -30,12 +33,11 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            height: 600px; /* 높이 증가 */
-            margin-right: 20px; /* 오른쪽 여백 추가 */
-            padding: 20px; /* 내부 여백 추가 */
+            height: 650px; /* 높이 증가 */
+            padding: 25px; /* 내부 여백 추가 */
         }
         .video-container {
-            width: 30.00%;
+            width: 25%;
             background-color: #ffffff;
             border: 2px solid #007BFF;
             border-radius: 10px;
@@ -43,8 +45,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 600px; /* 높이 증가 */
-            margin: 0 20px; /* 좌우 여백 추가 */
+            height: 650px; /* 높이 증가 */
             padding: 20px; /* 내부 여백 추가 */
         }
         .video-grid {
@@ -66,12 +67,12 @@
             font-size: 20px;
         }
         .info-container {
-            width: 20.00%;
+            width: 15%;
             background-color: #ffffff;
             border: 2px solid #007BFF;
             border-radius: 10px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            height: 600px; /* 높이 증가 */
+            height: 650px; /* 높이 증가 */
             padding: 20px; /* 내부 여백 추가 */
         }
         h1 {
@@ -99,15 +100,136 @@
         button:hover {
             background-color: #0056b3;
         }
-        @media (max-width: 1200px) {
+        /* 태블릿 반응형 디자인 (768px - 1200px) */
+        @media (max-width: 1200px) and (min-width: 769px) {
             .main-container {
                 flex-direction: column;
                 align-items: center;
+                padding: 15px;
             }
+            
             .large-box, .video-container, .info-container {
                 width: 100%;
                 margin-right: 0;
                 margin-bottom: 20px;
+            }
+            
+            .large-box {
+                height: 500px;
+            }
+            
+            .video-container, .info-container {
+                height: 400px;
+            }
+        }
+
+        /* 모바일 반응형 디자인 (768px 이하) */
+        @media (max-width: 768px) {
+            body {
+                font-size: 14px;
+            }
+            
+            .main-container {
+                flex-direction: column;
+                align-items: center;
+                padding: 10px;
+                gap: 15px;
+            }
+            
+            .large-box, .video-container, .info-container {
+                width: 100%;
+                margin-right: 0;
+                margin-bottom: 0;
+                height: auto;
+                min-height: 300px;
+            }
+            
+            .large-box {
+                height: 350px;
+                padding: 15px;
+            }
+            
+            .video-container {
+                height: 300px;
+                padding: 15px;
+            }
+            
+            .video-grid {
+                gap: 8px;
+            }
+            
+            .video-box {
+                font-size: 16px;
+                height: 70%;
+            }
+            
+            .info-container {
+                height: auto;
+                padding: 15px;
+            }
+            
+            h1 {
+                font-size: 20px;
+                margin-bottom: 10px;
+            }
+            
+            p {
+                font-size: 14px;
+                margin: 8px 0;
+            }
+            
+            input, button {
+                padding: 8px;
+                font-size: 14px;
+            }
+        }
+
+        /* 소형 모바일 반응형 디자인 (480px 이하) */
+        @media (max-width: 480px) {
+            body {
+                font-size: 12px;
+            }
+            
+            .main-container {
+                padding: 5px;
+                gap: 10px;
+            }
+            
+            .large-box, .video-container, .info-container {
+                min-height: 250px;
+                padding: 10px;
+            }
+            
+            .large-box {
+                height: 300px;
+            }
+            
+            .video-container {
+                height: 250px;
+            }
+            
+            .video-grid {
+                gap: 5px;
+            }
+            
+            .video-box {
+                font-size: 14px;
+                height: 60%;
+            }
+            
+            h1 {
+                font-size: 18px;
+                margin-bottom: 8px;
+            }
+            
+            p {
+                font-size: 12px;
+                margin: 6px 0;
+            }
+            
+            input, button {
+                padding: 6px;
+                font-size: 12px;
             }
         }
     </style>

@@ -65,9 +65,10 @@
         }
 
         .container {
-            max-width: 1280px;
+            max-width: 100%;
             margin: 0 auto;
             padding: 0 1rem; /* 모바일에서 여백 줄임 */
+            width: 100%;
         }
 
         /* 섹션 타이틀 개선 */
@@ -181,6 +182,33 @@
             font-weight: 500;
             position: relative;
             padding: 0.5rem 0;
+        }
+
+        .login-section {
+            margin-left: 1rem;
+        }
+
+        .login-section button {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+
+        .login-section button:hover {
+            background: var(--primary-hover);
+        }
+
+        .logout-btn {
+            background: #dc3545 !important;
+            margin-left: 0.5rem;
+        }
+
+        .logout-btn:hover {
+            background: #c82333 !important;
         }
 
         .nav-link::after {
@@ -373,7 +401,7 @@
 
         .services-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, fr));
+            grid-template-columns: repeat(4, 1fr);
             gap: 2rem;
             margin-top: 3rem;
         }
@@ -384,7 +412,7 @@
             overflow: hidden;
             transition: var(--transition);
             box-shadow: var(--card-shadow);
-            height: 360px;
+            height: 400px;
             display: flex;
             flex-direction: column;
             position: relative;
@@ -419,21 +447,21 @@
 
         .service-image {
             width: 100%;
-            height: 200px;
+            height: 220px;
             object-fit: cover;
             display: block;
             margin: 0 auto; /* 가로 중앙 정렬 */
             padding : 10px;
-            border-radius: 20px; /* 원형으로 만들기 */
+            border-radius: 15px; /* 원형으로 만들기 */
         }
         .research-image {
             width: 100%;
-            height: 200px;
+            height: 220px;
             object-fit: cover;
             display: block;
             margin: 0 auto; /* 가로 중앙 정렬 */
             padding : 10px;
-            border-radius: 20px; /* 원형으로 만들기 */
+            border-radius: 15px; /* 원형으로 만들기 */
         }
 
         .service-content {
@@ -498,13 +526,14 @@
             display: flex;
             flex-direction: column;
             gap: 4rem;
+            width: 100%;
         }
 
         .feature-item {
             display: flex;
             align-items: center;
             gap: 4rem;
-            
+            margin-bottom: 4rem;
         }
         .flux-card {
             display: flex;
@@ -544,16 +573,18 @@
         }
 
         .image-row {
-            display: flex; /* 이미지를 가로로 나열 */
-            justify-content: space-between; /* 이미지 간격을 균등하게 */
+            display: flex; /* 기본적으로 flex 사용 */
+            flex-direction: column; /* 모바일에서는 세로 배치 */
             width: 100%; /* 부모 요소의 너비를 100%로 설정 */
             margin-bottom: 20px; /* 이미지 밑에 간격 */
+            gap: 15px; /* 이미지 간격 추가 */
         }
 
         .flux-image {
-            width: 80%; /* 각 이미지의 너비를 30%로 설정 */
-            height: auto;
-            object-fit: cover;
+            width: 100%; /* 각 이미지의 너비를 100%로 설정 */
+            height: auto; /* 모바일에서는 자동 높이 */
+            max-height: 200px; /* 최대 높이 제한 */
+            object-fit: contain; /* 전체 이미지가 보이도록 */
             border-radius: 8px; /* 둥근 모서리 */
         }
         .flux-type {
@@ -569,29 +600,33 @@
         }
         .flux-item {
             text-align: center; /* 텍스트를 이미지 아래 중앙 정렬 */
-            width: 30%; /* 각 이미지의 너비를 30%로 설정 */
+            width: 100%; /* 모바일에서는 1열 */
+            margin-bottom: 20px; /* 아래 여백 추가 */
         }
 
         .grid-container {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr); /* 2열로 구성 */
-            grid-template-rows: repeat(3, 1fr); /* 3행으로 구성 */
-            gap: 20px; /* 아이템 간의 간격 */
+            display: flex; /* flex로 변경 */
+            flex-wrap: wrap; /* 줄바꿈 허용 */
+            gap: 15px; /* 아이템 간의 간격 */
             width: 100%;
-            height: 100%;
-            
-
+            margin: 20px 0;
+            justify-content: space-between;
         }
 
         .grid-item {
             background: linear-gradient(to bottom, #101828, #0A3C6A); /* 파란색에서 하늘색으로 그라데이션 */
             border-radius: 10px; /* 둥근 모서리 */
-            padding: 10px;
+            padding: 15px;
             text-align: center;
             position: relative;
             overflow: hidden;
             display: flex;
-            height : 150px;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 120px;
+            width: 48%; /* 2열을 위해 48%로 설정 */
+            margin-bottom: 15px;
         }
 
         .equation-type {
@@ -602,39 +637,40 @@
             padding: 10px;
         }
         .container-eq {
-            display: flex; /* Flexbox로 두 요소를 가로로 배치 */
-            justify-content: space-between;
-            align-items: flex-start;
+            display: grid; /* 그리드 레이아웃 사용 */
+            grid-template-columns: repeat(2, 1fr); /* 2열로 배치 */
             gap: 20px; /* 사진 사이 간격 */
+            margin: 20px 0;
         }
 
         .left-image {
-            flex: 1; /* 왼쪽 사진을 차지할 공간 */
-            width: 60%; /* 크기를 60%로 설정 */
+            width: 100%;
         }
 
         .left-image img {
-            width: 100%; /* 사진을 부모 요소에 맞게 크기 조정 */
+            width: 100%;
             height: auto;
+            max-height: 200px;
+            object-fit: contain;
             border-radius: 10px;
         }
 
         .right-container-eq {
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            flex: 1;
-            width: 35%;
+            display: grid;
+            grid-template-rows: 1fr 1fr;
+            gap: 15px;
+            width: 100%;
         }
 
         .top-image, .bottom-image {
-            margin-bottom: 10px;
             width: 100%;
         }
 
         .top-image img, .bottom-image img {
             width: 100%;
             height: auto;
+            max-height: 150px;
+            object-fit: contain;
             border-radius: 10px;
         }
 
@@ -676,10 +712,12 @@
 
         .feature-image {
             flex: 1;
-            max-width: 500px;
+            max-width: 600px;
             border-radius: 12px;
             overflow: hidden;
             box-shadow: var(--card-shadow);
+            margin: 0 auto;
+            text-align: center;
         }
 
         .feature-image img {
@@ -691,7 +729,9 @@
 
         .feature-content {
             flex: 1;
-            margin : 20px;
+            margin: 20px;
+            max-width: none;
+            width: 100%;
         }
 
         .feature-title {
@@ -753,11 +793,13 @@
             display: flex;
             align-items: center;
             gap: 4rem;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
         .about-image {
             flex: 1;
-            max-width: 30%;
+            max-width: 300px;
             border-radius: 50%;
             overflow: hidden;
             box-shadow: var(--card-shadow);
@@ -769,7 +811,8 @@
         }
 
         .about-text {
-            flex: 1;
+            flex: 2;
+            max-width: 600px;
         }
 
         .about-title {
@@ -967,11 +1010,217 @@
             }
         }
 
-        /* 모바일 반응형 디자인 개선 */
+        /* 데스크탑 이미지 최적화 */
+        @media (min-width: 1025px) {
+            .container {
+                max-width: 100%;
+                width: 100%;
+                padding: 0 2rem;
+            }
+            .service-image2, .service-image3, .service-image4, .service-image5 {
+                max-height: 150px;
+            }
+            
+            .all-image {
+                max-height: 600px; /* 2배로 증가 */
+                width: 100%;
+                object-fit: contain;
+                display: block;
+                margin: 0 auto; /* 가운데 정렬 */
+            }
+            
+            .equation-image-large {
+                height: 495px !important; /* 수식2 이미지 크기 증가 (데스크탑 전용) */
+                width: 100% !important;
+                object-fit: contain !important;
+            }
+            
+            .full-width-image {
+                grid-column: 1 / -1;
+                margin: 30px 0;
+                text-align: center; /* 가운데 정렬 */
+                width: 100%;
+            }
+            
+            .flux-image {
+                max-height: 200px;
+            }
+            
+            .image-row {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 20px;
+                width: 80%;
+                margin: 0 auto;
+                align-items: stretch; /* 카드 높이 맞춤 */
+                max-width: none;
+            }
+            
+            .flux-item {
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                background: var(--card-bg);
+                border-radius: 12px;
+                padding: 15px;
+                box-shadow: var(--card-shadow);
+                transition: var(--transition);
+                margin-bottom: 20px;
+                height: 440px !important; /* 카드 높이 살짝 증가 */
+                overflow: hidden; /* 넘치는 내용 숨김 */
+                position: relative;
+            }
+            
+            .flux-item:hover {
+                transform: translateY(-5px);
+                box-shadow: var(--card-shadow-hover);
+            }
+            
+            .flux-image {
+                width: 100%;
+                height: 220px !important; /* 이미지 높이 더 증가 */
+                object-fit: contain; /* 전체 이미지가 보이도록 유지 */
+                border-radius: 8px;
+                flex-shrink: 0; /* 축소 방지 */
+                margin-bottom: 5px;
+            }
+            
+            .flux-type {
+                font-size: 18px;
+                padding: 8px 20px;
+                font-weight: bold;
+                margin: 0;
+            }
+            
+            .flux-item .feature-title {
+                font-size: 1.5rem;
+                margin: 3px 0;
+                line-height: 1.1;
+                text-align: center;
+                font-weight: bold;
+            }
+            
+            .flux-item .section-subtitle {
+                font-size: 1.1rem;
+                line-height: 1.2;
+                margin: 2px 0;
+                text-align: center;
+                flex-grow: 1;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding: 0 5px;
+            }
+            
+            .container-eq {
+                gap: 25px;
+            }
+            
+            .equation-item {
+                height: 300px !important; /* 수식 부분 높이 줄임 */
+            }
+            
+            .equation-item:last-child .flux-image {
+                height: 495px !important; /* 오른쪽 수식 이미지 1.5배 더 증가 (330px × 1.5) */
+            }
+            
+            
+            .left-image img {
+                max-height: 250px;
+            }
+            
+            .top-image img, .bottom-image img {
+                max-height: 180px;
+            }
+            
+            .grid-container {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 20px;
+                justify-content: space-between;
+            }
+            
+            .grid-item {
+                width: 48%;
+                min-height: 140px;
+                padding: 20px;
+                margin-bottom: 20px;
+            }
+            
+            .equation-type {
+                font-size: 12px;
+            }
+        }
+
+        /* 태블릿 반응형 디자인 (768px - 1024px) */
+        @media (max-width: 1024px) and (min-width: 769px) {
+            .container {
+                padding: 0 1.5rem;
+            }
+            
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1.5rem;
+            }
+            
+            .service-card {
+                max-width: 100%;
+                height: 380px;
+            }
+            
+            .feature-item {
+                gap: 2rem;
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .feature-item:nth-child(even) {
+                flex-direction: column;
+            }
+            
+            .feature-image {
+                max-width: 500px;
+                order: 1;
+                margin: 0 auto;
+                text-align: center;
+            }
+            
+            .feature-content {
+                order: 2;
+                max-width: none;
+                width: 100%;
+            }
+            
+            .about-content {
+                flex-direction: column;
+                text-align: center;
+                gap: 2rem;
+            }
+            
+            .about-image {
+                max-width: 250px;
+            }
+            
+            .image-row {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 15px;
+            }
+            
+            .flux-image {
+                max-height: 150px;
+            }
+            
+            .flux-item {
+                padding: 15px;
+            }
+        }
+
+        /* 모바일 반응형 디자인 (768px 이하) */
         @media (max-width: 768px) {
             /* 컨테이너 */
             .container {
-                padding: 0 ;
+                padding: 0 1rem;
             }
             
             /* 헤더 개선 */
@@ -987,13 +1236,6 @@
                 width: 35px;
                 height: 35px;
             }
-            .digital-image {
-    
-                width: 100%; /* 이미지 크기 설정 */
-                height: auto; /* 이미지 비율 유지 */
-                z-index: 1; /* 이미지가 도형 위에 오도록 설정 */
-                border-radius: 10px;
-            }
             
             .brand-name {
                 font-size: 1.5rem;
@@ -1008,7 +1250,7 @@
                 position: fixed;
                 top: 0;
                 right: -100%;
-                width: 60%;
+                width: 80%;
                 height: 100vh;
                 background: var(--card-bg);
                 flex-direction: column;
@@ -1032,31 +1274,32 @@
             .mobile-menu-btn {
                 display: block;
                 z-index: 1000;
-            }
-            
-            .mobile-menu-btn {
-                display: block;
                 font-size: 1.8rem;
                 padding: 0.5rem;
             }
             
             /* 히어로 섹션 개선 */
+            .hero {
+                height: 80vh;
+                padding-top: 60px;
+            }
+            
             .hero-content {
-                padding: 0 1.5rem;
+                padding: 0 1rem;
             }
             
             .hero-title {
-                font-size: clamp(2rem, 8vw, 3rem);
+                font-size: clamp(1.8rem, 6vw, 2.5rem);
                 margin-bottom: 0.8rem;
             }
             
             .hero-subtitle {
-                font-size: clamp(1rem, 4vw, 1.2rem);
+                font-size: clamp(0.9rem, 4vw, 1.1rem);
                 margin-bottom: 1.5rem;
             }
             
             .hero-description {
-                font-size: 1rem;
+                font-size: 0.9rem;
                 margin-bottom: 2rem;
                 padding: 0 0.5rem;
             }
@@ -1070,70 +1313,157 @@
             .btn {
                 width: 100%;
                 max-width: 280px;
-                padding: 1rem 2rem;
-                font-size: 1rem;
+                padding: 0.8rem 1.5rem;
+                font-size: 0.9rem;
             }
             
             /* 서비스 그리드 개선 */
             .services-grid {
-                grid-template-columns: repeat(1, 1fr); /* 모바일에서 1열로 */
+                grid-template-columns: 1fr;
                 gap: 1.5rem;
                 margin-top: 2rem;
             }
             
             .service-card {
                 margin: 0 auto;
-                max-width: 300px; /* 최대 너비 제한 */
-                max-height :400px;
-                
+                max-width: 100%;
+                height: auto;
+                min-height: 300px;
             }
             
-            .service-image {
-                height: 180px; /* 모바일에서 이미지 높이 줄임 */
+            .service-image, .research-image {
+                width: 100%;
+                height: 180px;
+                object-fit: cover;
+                padding: 10px;
+                border-radius: 15px;
             }
-            .research-image {
-            width: 80%;
-            height: 200px;
-            object-fit: cover;
-            display: block;
-            margin: 0 auto; /* 가로 중앙 정렬 */
-            padding : 10px;
-            border-radius: 20px; /* 원형으로 만들기 */
+            
+        .service-image2, .service-image3, .service-image4, .service-image5 {
+            width: 100%;
+            height: auto;
+            max-height: 200px;
+            object-fit: contain;
+            margin: 10px 0;
         }
-            .service-image2 {
-                width : 420px;
-                height: 150px; /* 모바일에서 이미지 높이 줄임 */
-                align-items: center;
-                
-            }
-            .service-image3 {
-                width : 420px;
-                height: 200px; /* 모바일에서 이미지 높이 줄임 */
-                align-items: center;
-                
-            }
-            .service-image4 {
-                width : 420px;
-                height: 120px; /* 모바일에서 이미지 높이 줄임 */
-                align-items: center;
-                
-            }
-            .service-image5 {
-                width : 420px;
-                height: 240px; /* 모바일에서 이미지 높이 줄임 */
-                align-items: center;
-                
-            }
-            .all-image {
-                width : 410px;
-                height: 490px; /* 모바일에서 이미지 높이 줄임 */
+        
+        .all-image {
+            width: 100%;
+            height: auto;
+            max-height: 300px;
+            object-fit: contain;
+        }
+        
+        .flux-image {
+            max-height: 100px;
+        }
 
-                align-items: center;
-                
-            }
+        /* 모달 스타일 */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .modal-content {
+            background-color: var(--card-bg);
+            margin: 15% auto;
+            padding: 2rem;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 400px;
+            position: relative;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close:hover {
+            color: var(--primary-color);
+        }
+
+        .modal-content form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .modal-content input,
+        .modal-content select {
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .modal-content button {
+            background: var(--primary-color);
+            color: white;
+            padding: 0.8rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .modal-content button:hover {
+            background: var(--primary-hover);
+        }
+
+        .modal-content p {
+            text-align: center;
+            margin-top: 1rem;
+        }
+
+        .modal-content a {
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .modal-content a:hover {
+            text-decoration: underline;
+        }
+
+        /* 메시지 스타일 */
+        .message {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 1rem 2rem;
+            border-radius: 5px;
+            color: white;
+            z-index: 1001;
+        }
+
+        .message.success {
+            background-color: #4CAF50;
+        }
+
+        .message.error {
+            background-color: #f44336;
+        }
+        
+        .image-row {
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        .flux-item {
+            margin: 0;
+        }
             
             .service-content {
-                padding: 1.0rem;
+                padding: 1rem;
             }
             
             .service-name span {
@@ -1141,18 +1471,19 @@
             }
             
             .service-description {
-                font-size: 0.95rem;
+                font-size: 0.9rem;
                 line-height: 1.5;
             }
             
             /* 피처 섹션 개선 */
             .features-wrapper {
-                gap: 3rem;
+                gap: 2rem;
+                width: 100%;
             }
             
             .feature-item {
                 flex-direction: column;
-                gap: 2rem;
+                gap: 1.5rem;
                 text-align: center;
             }
             
@@ -1161,28 +1492,29 @@
             }
             
             .feature-image {
-                max-width: 80%;
+                max-width: 100%;
                 order: 1;
             }
             
             .feature-content {
                 order: 2;
+                margin: 0;
             }
             
             .feature-title {
-                font-size: 1.3rem;
+                font-size: 1.2rem;
                 margin-bottom: 1rem;
             }
             
             .feature-description {
-                font-size: 0.95rem;
-                margin-bottom: 1.2rem;
+                font-size: 0.9rem;
+                margin-bottom: 1rem;
             }
             
             .feature-list-item {
                 justify-content: flex-start;
                 text-align: left;
-                font-size: 0.9rem;
+                font-size: 0.85rem;
             }
             
             /* About 섹션 개선 */
@@ -1193,25 +1525,24 @@
             }
             
             .about-image {
-                max-width: 250px;
+                max-width: 200px;
                 margin: 0 auto;
             }
             
             .about-title {
-                font-size: 2rem;
+                font-size: 1.5rem;
                 margin-bottom: 1rem;
             }
             
             .about-description {
-                font-size: 0.95rem;
+                font-size: 0.9rem;
                 text-align: center;
                 margin-bottom: 1.5rem;
-                padding : 15px;
+                padding: 0 1rem;
             }
             
             .stats {
-                flex-direction: row;
-                justify-content: space-around;
+                flex-direction: column;
                 gap: 1rem;
                 margin-top: 1.5rem;
             }
@@ -1221,7 +1552,7 @@
             }
             
             .stat-number {
-                font-size: 2rem;
+                font-size: 1.8rem;
             }
             
             .stat-label {
@@ -1230,13 +1561,13 @@
             
             /* 푸터 개선 */
             .footer {
-                padding: 3rem 0 1.5rem;
+                padding: 2rem 0 1rem;
             }
             
             .footer-content {
                 grid-template-columns: 1fr;
-                gap: 2rem;
-                margin-bottom: 2rem;
+                gap: 1.5rem;
+                margin-bottom: 1.5rem;
             }
             
             .footer-column {
@@ -1263,9 +1594,56 @@
             }
             
             .copyright {
-                font-size: 0.85rem;
+                font-size: 0.8rem;
+            }
+        }
+
+        /* 소형 모바일 반응형 디자인 (480px 이하) */
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 0.5rem;
             }
             
+            .header {
+                padding: 0.6rem 0.8rem;
+            }
+            
+            .logo-circle {
+                width: 30px;
+                height: 30px;
+            }
+            
+            .brand-name {
+                font-size: 1.2rem;
+            }
+            
+            .brand-tagline {
+                font-size: 0.35rem;
+            }
+            
+            .hero-title {
+                font-size: clamp(1.5rem, 8vw, 2rem);
+            }
+            
+            .hero-subtitle {
+                font-size: clamp(0.8rem, 5vw, 1rem);
+            }
+            
+            .service-card {
+                min-height: 250px;
+            }
+            
+            .service-image, .research-image {
+                height: 150px;
+            }
+            
+            .feature-title {
+                font-size: 1rem;
+            }
+            
+            .about-title {
+                font-size: 1.2rem;
+            }
         }
 
         /* 카드 커서 표시 */
@@ -1304,6 +1682,9 @@
             <a href="#digital-twin" class="nav-link">디지털 트윈</a>
             <a href="#user-services" class="nav-link">맞춤 서비스</a>
             <a href="#contact" class="nav-link">팀 소개</a>
+            <div id="login-btn" class="login-section">
+                <button onclick="showLoginModal()">로그인</button>
+            </div>
         </nav>
         <button class="mobile-menu-btn">☰</button>
     </header>
@@ -1387,7 +1768,7 @@
 
     
 
-    <section class="features" id="rip-current">
+    <section class="features" id="rip-current" style="padding-bottom: 80px;">
         <div class="container">
             <p class="section-subtitle">COIN과 함께하는 스마트 해양 안전 서비스</p>
             <h2 class="section-title">실시간 이안류 탐지 프로토콜 </h2>
@@ -1402,35 +1783,56 @@
             <div class="features-wrapper">
                 <div class="feature-item">
                     <div class="feature-content">
-                        <span class="service-type">Process.1</span>
-                        <h3 class="feature-title">이안류와 에너지 플럭스(\(E_{flux}\))</h3>
-                        <img src="{{ url_for('static', filename='images/에너지플럭스.png') }}" alt="픽셀별강도", class = 'service-image2'>
-                        <p class="section-subtitle">이안류는 쇄파 이후 잉여응력에 의해 발생한 해빈류가 <br>해저 지형에 집중되며 형성되는 역류입니다.</p>
-                        <img src="{{ url_for('static', filename='images/수식1.png') }}" alt="픽셀별강도", class = 'service-image4'>
-                        <img src="{{ url_for('static', filename='images/수식2.png') }}" alt="픽셀별강도", class = 'service-image5'>
-                        
-                        <p class="section-subtitle">잉여응력의 발산(∇⋅𝑆)은 에너지 플럭스와 비례 관계를 가지며, <br>에너지 플럭스 (\(E_{flux})\)을 통하여 <br> 이안류 발생 가능성 예측이 가능함을 알 수 있습니다.</p>
-                        <span class="service-type">Process.1</span>
-                        <h3 class="feature-title">CCTV 영상 사영보정</h3>
-                        <p class="section-subtitle">구글 어스를 활용하여 기준 좌표를 설정하여 사영보정을 진행하였습니다.</p>
-                        <img src="{{ url_for('static', filename='images/사영보정.png') }}" alt="픽셀별강도", class = 'service-image2'>
-                        <p class="section-subtitle">실시간 CCTV영상을 기반으로 COIN만의 알고리즘으로 <br>영상 분석을 진행하고 이를 통해 이안류 발생 패턴을 감지합니다.</p>
-                        
-                        <span class="service-type">Process.2</span>
-                        <h3 class="feature-title">픽셀별 강도 시계열 데이터 취득</h3>
-                        <img src="{{ url_for('static', filename='images/픽셀별강도.png') }}" alt="픽셀별강도", class = 'service-image2'>
-                        <p class="section-subtitle">Gray 스케일로 변환한 뒤 픽셀 별 강도 시계열 데이터를 <br> 30Hz로 취득하였습니다.</p>
+                        <div class="image-row">
+                            <div class="flux-item">
+                                <span class="service-type">Process.1</span>
+                                <h3 class="feature-title">이안류와 에너지 플럭스(\(E_{flux}\))</h3>
+                                <img src="{{ url_for('static', filename='images/에너지플럭스.png') }}" alt="픽셀별강도", class = 'flux-image'>
+                                <p class="section-subtitle">이안류는 쇄파 이후 잉여응력에 의해 발생한 해빈류가 <br>해저 지형에 집중되며 형성되는 역류입니다.</p>
+                            </div>
+                            
+                            <div class="flux-item">
+                                <span class="service-type">Process.2</span>
+                                <h3 class="feature-title">CCTV 영상 사영보정</h3>
+                                <img src="{{ url_for('static', filename='images/사영보정.png') }}" alt="픽셀별강도", class = 'flux-image'>
+                                <p class="section-subtitle">구글 어스를 활용하여 기준 좌표를 설정하여 사영보정을 진행하였습니다.</p>
+                            </div>
+                        </div>
 
-                        <span class="service-type">Process.3</span>
-                        <h3 class="feature-title">픽셀별 \(E_{flux}\)연산</h3>
-                        <img src="{{ url_for('static', filename='images/수식계산.png') }}" alt="픽셀별강도", class = 'service-image3'>
+                        <div class="image-row">
+                            <div class="flux-item">
+                                <span class="service-type">Process.3</span>
+                                <h3 class="feature-title">픽셀별 강도 시계열 데이터 취득</h3>
+                                <img src="{{ url_for('static', filename='images/픽셀별강도.png') }}" alt="픽셀별강도", class = 'flux-image'>
+                                <p class="section-subtitle">Gray 스케일로 변환한 뒤 픽셀 별 강도 시계열 데이터를 <br> 30Hz로 취득하였습니다.</p>
+                            </div>
+                            
+                            <div class="flux-item">
+                                <span class="service-type">Process.4</span>
+                                <h3 class="feature-title">픽셀별 \(E_{flux}\)연산</h3>
+                                <img src="{{ url_for('static', filename='images/수식계산.png') }}" alt="픽셀별강도", class = 'flux-image'>
+                                <p class="section-subtitle">1분동안 1,800 장의 프레임을 분석하여,실시간 \(E_{flux}\)를 산출 하였습니다.</p>
+                            </div>
+                        </div>
+
+                        <div class="image-row equation-row" style="margin-bottom: 50px;">
+                            <div class="flux-item equation-item">
+                                <img src="{{ url_for('static', filename='images/수식1.png') }}" alt="픽셀별강도", class = 'flux-image'>
+                            </div>
+                            
+                            <div class="flux-item equation-item">
+                                <img src="{{ url_for('static', filename='images/수식2.png') }}" alt="픽셀별강도", class = 'flux-image equation-image-large'>
+                            </div>
+                        </div>
+
+                        <p class="section-subtitle">잉여응력의 발산(∇⋅𝑆)은 에너지 플럭스와 비례 관계를 가지며, <br>에너지 플럭스 (\(E_{flux})\)을 통하여 <br> 이안류 발생 가능성 예측이 가능함을 알 수 있습니다.</p>
+
                         <div class="video-container" id="video-container">
                         <video id="my-video" controls>
                             <source src="{{ url_for('static', filename='videos/에너지플럭스계산.mp4') }}" type="video/mp4">
                             Your browser does not support the video tag.
                         </video>
                         </div>
-                        <p class="section-subtitle">1분동안 1,800 장의 프레임을 분석하여,실시간 \(E_{flux}\)를 산출 하였습니다.</p>
                     </div>
                 </div>
             </div>
@@ -1454,33 +1856,46 @@
                 <div class="feature-item">
 
                     <div class="feature-content">
-                        <span class="service-type">Process.1</span>
-                        <h3 class="feature-title">\(E_{flux}\)군집화</h3>
-                        <img src="{{ url_for('static', filename='images/군집화.png') }}" alt="군집", class = 'service-image2'>
-                        <p class="section-subtitle">계산된 \(E_{flux}\)를 기반으로 DBSCAN 을 활용하여<br> 밀도 기반 군집화를 진행하였습니다.</p>
-                        
-                        <span class="service-type">Process.2</span>
-                        <h3 class="feature-title">경로 계산</h3>
-                        <img src="{{ url_for('static', filename='images/경로계산.png') }}" alt="군집", class = 'service-image2'>
-                        <p class="section-subtitle">군집화된 결과를 기반으로 드론 정찰 경로를 <br>Prim 알고리즘을 활용하여 제작하였습니다.</p>
+                        <div class="image-row">
+                            <div class="flux-item">
+                                <span class="service-type">Process.1</span>
+                                <h3 class="feature-title">\(E_{flux}\)군집화</h3>
+                                <img src="{{ url_for('static', filename='images/군집화.png') }}" alt="군집", class = 'flux-image'>
+                                <p class="section-subtitle">계산된 \(E_{flux}\)를 기반으로 DBSCAN 을 활용하여<br> 밀도 기반 군집화를 진행하였습니다.</p>
+                            </div>
+                            
+                            <div class="flux-item">
+                                <span class="service-type">Process.2</span>
+                                <h3 class="feature-title">경로 계산</h3>
+                                <img src="{{ url_for('static', filename='images/경로계산.png') }}" alt="군집", class = 'flux-image'>
+                                <p class="section-subtitle">군집화된 결과를 기반으로 드론 정찰 경로를 <br>Prim 알고리즘을 활용하여 제작하였습니다.</p>
+                            </div>
+                        </div>
 
-                        <span class="service-type">Process.3</span>
-                        <h3 class="feature-title">디지털 트윈</h3>
-
-                        <img src="{{ url_for('static', filename='images/디지털트윈.png') }}" alt="Image" class="service-image2">
-
-                        <p class="section-subtitle">가상환경과 연동을 위해 마이크로소프트사의 Airsim플러그인을<br>  활용하여 Unreal engine 4.27과 연동하였습니다.</p>
-
-                        <span class="service-type">Process.4</span>
-                        <h3 class="feature-title">드론 구현</h3>
-                        
-                        <img src="{{ url_for('static', filename='images/드론구현.png') }}" alt="Image" class="service-image2">
-                        <p class="section-subtitle">제작된 경로로 드론 제어를 위해 <br>PX4-AUTOPILOT 오픈소스를 활용하였습니다.</p>
+                        <div class="image-row">
+                            <div class="flux-item">
+                                <span class="service-type">Process.3</span>
+                                <h3 class="feature-title">디지털 트윈</h3>
+                                <img src="{{ url_for('static', filename='images/디지털트윈.png') }}" alt="Image" class="flux-image">
+                                <p class="section-subtitle">가상환경과 연동을 위해 마이크로소프트사의 Airsim플러그인을<br>  활용하여 Unreal engine 4.27과 연동하였습니다.</p>
+                            </div>
+                            
+                            <div class="flux-item">
+                                <span class="service-type">Process.4</span>
+                                <h3 class="feature-title">드론 구현</h3>
+                                <img src="{{ url_for('static', filename='images/드론구현.png') }}" alt="Image" class="flux-image">
+                                <p class="section-subtitle">제작된 경로로 드론 제어를 위해 <br>PX4-AUTOPILOT 오픈소스를 활용하였습니다.</p>
+                            </div>
+                        </div>
  
 
-                        <span class="service-type">ALL PROCESS</span>
-                        <h3 class="feature-title">전체 프로세스</h3>
-                        <img src="{{ url_for('static', filename='images/전체프로세스.png') }}" alt="Image" class="all-image">
+                        <div style="text-align: center;">
+                            <span class="service-type">ALL PROCESS</span>
+                            <h3 class="feature-title">전체 프로세스</h3>
+                        </div>
+                        <div class="full-width-image">
+                            <img src="{{ url_for('static', filename='images/전체프로세스.png') }}" alt="Image" class="all-image">
+                        </div>
 
                     </div>
                 </div>
@@ -1603,7 +2018,7 @@
                         </p>
                         <p class="contact-item">
                             <span>📍</span>
-                            <span>그냥 한양대학로 55 제 1과학기술관 연안해양공학연구실</span>
+                            <span>한양대학로 55 제 1과학기술관 연안해양공학연구실</span>
                         </p>
                     </div>
                 </div>
@@ -1718,5 +2133,43 @@
             }
         }
     </script>
+
+    <!-- 로그인 모달 -->
+    <div id="login-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('login-modal')">&times;</span>
+            <h2>로그인</h2>
+            <form onsubmit="handleLogin(event)">
+                <input type="text" name="username" placeholder="사용자명" required>
+                <input type="password" name="password" placeholder="비밀번호" required>
+                <button type="submit">로그인</button>
+            </form>
+            <p>계정이 없으신가요? <a href="#" onclick="showRegisterModal(); closeModal('login-modal')">회원가입</a></p>
+        </div>
+    </div>
+
+    <!-- 회원가입 모달 -->
+    <div id="register-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('register-modal')">&times;</span>
+            <h2>회원가입</h2>
+            <form onsubmit="handleRegister(event)">
+                <input type="text" name="username" placeholder="사용자명" required>
+                <input type="email" name="email" placeholder="이메일" required>
+                <input type="password" name="password" placeholder="비밀번호" required>
+                <select name="role">
+                    <option value="user">일반 사용자</option>
+                    <option value="lifeguard">안전요원</option>
+                    <option value="admin">관리자</option>
+                </select>
+                <button type="submit">회원가입</button>
+            </form>
+            <p>이미 계정이 있으신가요? <a href="#" onclick="showLoginModal(); closeModal('register-modal')">로그인</a></p>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+    <script src="{{ url_for('static', filename='fetch.data.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/auth.js') }}"></script>
 </body>
 </html>

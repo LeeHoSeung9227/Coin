@@ -225,8 +225,10 @@
         .main {
             display: flex;
             flex: 1;
-            padding: 15px;
-            gap: 20px;  
+            padding: 20px;
+            gap: 30px;
+            max-width: 1400px;
+            margin: 0 auto;
         }
 
         
@@ -234,10 +236,10 @@
         .video-section {
             background-color: #161B22;
             border-radius: 12px;
-            padding: 20px;
+            padding: 25px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            width: 70%;
-            height: 680px;
+            width: 75%;
+            height: 700px;
             position: relative;
         }
 
@@ -259,14 +261,14 @@
         }
 
         .button-section {
-            width: 250px;
+            width: 300px;
             display: flex;
             flex-direction: column;
-            gap: 20px;
+            gap: 25px;
         }
 
         .button-card {
-            height: 100px;
+            height: 120px;
             background-color: #1E262E;
             border-radius: 12px;
             padding: 20px;
@@ -283,32 +285,57 @@
         }
 
         .button-card img {
-            width: 80px;
-            height: 80px;
+            width: 90px;
+            height: 90px;
             object-fit: contain;
         }
 
         .button-card h3 {
-            font-size: 1rem;
+            font-size: 1.1rem;
             color: #FFFFFF;
             margin: 0;
         }
 
         .button-card p {
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             color: #A1A1A1;
+            line-height: 1.4;
         }
 
-        /* Responsive Design */
-        @media (max-width: 500px) {
-            /* Header Styles */
-            /* 헤더 수정 */
-            /* 컨테이너 */
+        /* 태블릿 반응형 디자인 (768px - 1024px) */
+        @media (max-width: 1024px) and (min-width: 769px) {
             .container {
-                padding: 0 ;
+                padding: 0 1.5rem;
             }
             
-            /* 헤더 개선 */
+            .main {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+            
+            .video-section {
+                width: 100%;
+                height: 500px;
+            }
+            
+            .button-section {
+                width: 100%;
+                flex-direction: row;
+                justify-content: space-around;
+            }
+            
+            .button-card {
+                flex: 1;
+                max-width: 300px;
+            }
+        }
+
+        /* 모바일 반응형 디자인 (768px 이하) */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 1rem;
+            }
+            
             .header {
                 padding: 0.8rem 1rem;
             }
@@ -321,13 +348,6 @@
                 width: 35px;
                 height: 35px;
             }
-            .digital-image {
-    
-                width: 100%; /* 이미지 크기 설정 */
-                height: auto; /* 이미지 비율 유지 */
-                z-index: 1; /* 이미지가 도형 위에 오도록 설정 */
-                border-radius: 10px;
-            }
             
             .brand-name {
                 font-size: 1.5rem;
@@ -337,90 +357,57 @@
                 font-size: 0.4rem;
             }
 
-            /* Hide default sidebar */
-            .sidebar {
-                position: fixed;
-                top: -100%;
-                left: 0; /* Hide off-screen */
-                width: 100%;
-                height: 100%;
-                background-color: #161B22;
-                color: white;
-                padding: 0;
-                box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
-                transition: all 0.3s ease;
-                z-index: 1000;
-                overflow: hidden; /* 화면에 넘치는 부분 숨기기 */
-                border-bottom: 1px solid white;
-            }
-            
-            .sidebar.active {
-                top: 70px; /* Slide into view */
-                padding:20px;
-            }
-            
-
-            .menu-icon {
-                display: block; /* Show menu icon on small screens */
-                position: absolute; /* 추가 */
-                right: 20px; /* 추가 */
-            }
-
-            .header {
-                justify-content: space-between;
-            }
-
             .main {
-                margin-left: 0; /* Ensure content doesn't move with sidebar */
+                margin-left: 0;
                 flex-direction: column;
-                
+                gap: 1rem;
+                padding: 1rem;
             }
+            
             .video-section {
-                background-color: #161B22;
-                border-radius: 12px;
-                padding: 20px;
-                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
                 width: 100%;
-                height:600px;
-                margin-top : 80px;
-                
+                height: 400px;
+                margin-top: 0;
+                padding: 15px;
             }
-            .video-section video{
+            
+            .video-section video {
                 width: 100%;
-                height:500px;
+                height: 300px;
                 border-radius: 8px;
                 object-fit: contain;
             }
+            
             .video-section img {
-                width:350px;
-                height:500px;
-                align-items: center;
+                width: 100%;
+                height: 300px;
+                object-fit: contain;
+                border-radius: 8px;
             }
 
             .video-section h2 {
                 margin-top: 15px;
-                font-size: 1.0rem;
+                font-size: 1.2rem;
                 color: #FFFFFF;
             }
 
             .video-section p {
-                font-size: 0.8rem;
+                font-size: 0.9rem;
                 color: #A1A1A1;
             }
-            /* Right Sidebar (Card Buttons) */
+            
             .button-section {
                 width: 100%;
-                height:10%;
                 display: flex;
                 flex-direction: column;
-                gap: 20px;
+                gap: 15px;
             }
 
             .button-card {
-                height: 100px;
+                height: 80px;
                 background-color: #1E262E;
                 border-radius: 12px;
-                padding: 20px;
+                padding: 15px;
                 display: flex;
                 gap: 15px;
                 box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -429,28 +416,91 @@
             }
 
             .button-card:hover {
-                transform: translateY(-5px);
-                box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+                transform: translateY(-3px);
+                box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
             }
 
             .button-card img {
-                width: 60px;
-                height: 60px;
+                width: 50px;
+                height: 50px;
                 object-fit: contain;
             }
 
             .button-card h3 {
-                font-size: 1rem;
+                font-size: 0.9rem;
                 color: #FFFFFF;
                 margin: 0;
             }
 
             .button-card p {
-                font-size: 0.9rem;
+                font-size: 0.8rem;
                 color: #A1A1A1;
             }
-            
+        }
+
+        /* 소형 모바일 반응형 디자인 (480px 이하) */
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 0.5rem;
             }
+            
+            .header {
+                padding: 0.6rem 0.8rem;
+            }
+            
+            .logo-circle {
+                width: 30px;
+                height: 30px;
+            }
+            
+            .brand-name {
+                font-size: 1.2rem;
+            }
+            
+            .brand-tagline {
+                font-size: 0.35rem;
+            }
+            
+            .main {
+                padding: 0.5rem;
+            }
+            
+            .video-section {
+                height: 350px;
+                padding: 10px;
+            }
+            
+            .video-section video,
+            .video-section img {
+                height: 250px;
+            }
+            
+            .video-section h2 {
+                font-size: 1rem;
+            }
+            
+            .video-section p {
+                font-size: 0.8rem;
+            }
+            
+            .button-card {
+                height: 70px;
+                padding: 10px;
+            }
+            
+            .button-card img {
+                width: 40px;
+                height: 40px;
+            }
+            
+            .button-card h3 {
+                font-size: 0.8rem;
+            }
+            
+            .button-card p {
+                font-size: 0.7rem;
+            }
+        }
     </style>
 </head>
 <body>
